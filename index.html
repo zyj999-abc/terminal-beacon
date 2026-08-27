@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>终端信标 — 阅前声明</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="decl" id="decl">
+    <div class="warning-title">【最高级别预警 & 游玩规约】</div>
+    <div class="warning-sub">ARCHIVE ACCESS DECLARATION_</div>
+
+    <ul style="list-style:none">
+      <li class="clause">
+        <span class="clause-label">I. 性质声明</span>
+        本作品为<strong>完全虚构的互动解密档案</strong>。剧情设定在 2011 年东北小城，所有人物、机构、地点均为虚构。
+        如有雷同，纯属巧合。<span class="highlight">游戏内不出现任何美化违法犯罪的具体操作指南</span>。
+        <span class="highlight">【不建议 16 岁以下游玩】</span>
+      </li>
+      <li class="clause">
+        <span class="clause-label">II. 心理预警（CW / TW）</span>
+        本作无灵异，无 jump scare。包含<strong>家庭暴力、长期隐瞒、遗体处置</strong>等沉重剧情。
+        对相关题材敏感的玩家请谨慎游玩。
+      </li>
+      <li class="clause">
+        <span class="clause-label">III. 玩法规约</span>
+        所有谜题线索呈现在页面上，或基于现实语义推理（生日、地理编号、日期等）解开。
+        <span class="highlight">无需 F12 查看源代码即可通关</span>，但允许查阅。
+        预计游玩时长 60~90 分钟。
+      </li>
+      <li class="clause">
+        <span class="clause-label">IV. 道德说明</span>
+        本作的双结局均<strong>不美满</strong>。玩家将面对真实生活中的两难，
+        没有"全部善终"的选项。
+      </li>
+    </ul>
+
+    <div class="meta-info">
+      <span>预计调阅时长：60~90 分钟</span>
+      <span>SYSTEM STATUS: STANDBY</span>
+    </div>
+
+    <div style="text-align:center">
+      <button class="start-btn" id="start-btn">我已悉知并同意</button>
+    </div>
+  </div>
+  <script src="js/core.js"></script>
+  <script>
+    document.getElementById("start-btn").addEventListener("click", () => {
+      const d = document.getElementById("decl");
+      d.classList.add("fade-out");
+      setTimeout(() => BEACON.go("intro"), 1100);
+    });
+  </script>
+</body>
+</html>

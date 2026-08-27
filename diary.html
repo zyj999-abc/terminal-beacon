@@ -109,7 +109,15 @@
     </div>
   </div>
 
+  <audio id="sfxPower" src="audio/power_off.wav" style="display:none"></audio>
   <script src="js/core.js"></script>
+  <script>
+    const p = document.getElementById("sfxPower");
+    p.volume = 0.6;
+    // 第 4 页 (撕页) 文字会触发断电效果
+    const original = document.getElementById("page").innerHTML;
+    function tryPlay() { p.play().catch(()=>{}); }
+    document.addEventListener("click", tryPlay, { once: true });
   <script>
     const pages = [
       // 0

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>终端信标 — 序章</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #050505; font-family: "KaiTi", "楷体", "SimSun", serif; color: #d6cfc0; }
+    .stage { position: relative; width: 100%; height: 100%; }
+    /* 1990 年代录像带噪点背景 */
+    .bg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, #0a0807 0%, #1a120a 50%, #2c1f10 100%);
+      filter: contrast(1.15) saturate(0.7);
+      z-index: 0;
+    }
+    .scanlines {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(rgba(20,18,16,0) 50%, rgba(0,0,0,0.4) 50%);
+      background-size: 100% 3px;
+      pointer-events: none; z-index: 5; opacity: 0.6;
+    }
+    .subtitle {
+      position: absolute; bottom: 18%; left: 0; width: 100%;
+      text-align: center; z-index: 10; padding: 0 20px;
+    }
+    .subtitle .line {
+      font-size: 22px; color: #f0e8d8; letter-spacing: 3px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.95), 0 0 12px rgba(0,0,0,0.7);
+      opacity: 0; transition: opacity 1.5s ease-in-out;
+      margin-bottom: 8px;
+    }
+    .subtitle .line.show { opacity: 1; }
+    .meta {
+      position: absolute; top: 24px; left: 24px; z-index: 10;
+      color: #5a4d3a; font-size: 13px; font-family: monospace; letter-spacing: 1px;
+    }
+    .center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 20; display: flex; flex-direction: column; align-items: center;
+      opacity: 0; pointer-events: none; transition: opacity 2s ease;
+    }
+    .center.show { opacity: 1; pointer-events: auto; }
+    .power-btn {
+      background: #0a0a0a; border: 1px solid #8b6f3a; color: #d4b878;
+      padding: 16px 42px; font-family: "SimSun", monospace; font-size: 16px;
+      letter-spacing: 3px; cursor: pointer;
+    }
+    .power-btn:hover { background: #1a1208; box-shadow: 0 0 18px rgba(212,184,120,0.4); }
+    .stage-end { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity 1.5s; z-index: 30; }
+    .stage-end.on { opacity: 1; pointer-events: auto; }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="bg"></div>
+    <div class="scanlines"></div>
+    <div class="meta">2003 → 2011 / 鹤岗 / 8 年</div>
+    <div class="subtitle" id="sub">
+      <div class="line">2011 年 7 月 12 日。</div>
+      <div class="line">妈妈失踪第 8 天。</div>
+      <div class="line">爸爸还是说"她去省城看病了"。</div>
+      <div class="line">但她的手机、身份证、医保卡，全在家里。</div>
+      <div class="line">今天是暑假第一天。</div>
+      <div class="line">我在阳台翻晒被褥的时候，</div>
+      <div class="line">找到了那台 2003 年的旧台式机。</div>
+      <div class="line">我爸在网通公司当临时工，</div>
+      <div class="line">这台机器是他拉医院网线时留下来的。</div>
+      <div class="line">电源一插，风扇转了八秒才起来。</div>
+    </div>
+    <div class="center" id="center">
+      <button class="power-btn" id="power">按下电源键</button>
+    </div>
+    <div class="stage-end" id="endStage"></div>
+  </div>
+  <script>
+    const lines = document.querySelectorAll("#sub .line");
+    const center = document.getElementById("center");
+    const endStage = document.getElementById("endStage");
+    let i = 0;
+    function next() {
+      if (i < lines.length) {
+        lines[i].classList.add("show");
+        setTimeout(() => {
+          lines[i].classList.remove("show");
+          i++;
+          setTimeout(next, 600);
+        }, 2600);
+      } else {
+        center.classList.add("show");
+      }
+    }
+    setTimeout(next, 1200);
+    document.getElementById("power").addEventListener("click", () => {
+      center.style.pointerEvents = "none";
+      endStage.classList.add("on");
+      setTimeout(() => window.location.href = "xp.html", 1800);
+    });
+  </script>
+</body>
+</html>

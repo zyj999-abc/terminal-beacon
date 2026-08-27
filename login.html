@@ -127,6 +127,11 @@
   </div>
 
   <script src="js/core.js"></script>
+  <audio id="sfxDial" src="audio/dialup.wav" style="display:none"></audio>
+  <script>
+    const dial = document.getElementById("sfxDial");
+    dial.volume = 0.4;
+    document.addEventListener("click", () => dial.play().catch(()=>{}), { once: true });
   <script>
     function tick() {
       const d = new Date();

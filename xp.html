@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>桌面</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    /* XP 桌面图标 */
+    .icon { position: absolute; width: 80px; text-align: center; cursor: pointer; }
+    .icon img { width: 48px; height: 48px; display: block; margin: 0 auto 4px; filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3)); }
+    .icon .label { color: white; font-size: 13px; text-shadow: 1px 1px 1px rgba(0,0,0,0.9); padding: 2px 4px; border-radius: 2px; }
+    .icon:hover .label, .icon.selected .label { background: rgba(0,80,180,0.6); }
+    .icon.selected { background: rgba(0,80,180,0.2); }
+    .icon-momi  { top: 20px;  left: 20px; }
+    .icon-line  { top: 20px;  left: 120px; }
+    .icon-diary { top: 20px;  left: 220px; }
+    .icon-recycle { bottom: 50px; left: 20px; }
+    .icon-mycom { top: 20px; right: 20px; }
+    /* 鼠标选中蓝 */
+    .selected { outline: 1px dotted white; outline-offset: -1px; }
+  </style>
+</head>
+<body>
+  <!-- 桌面图标 -->
+  <div class="icon icon-momi"  data-target="login.html"  onclick="openIcon(this)">
+    <div class="icon-img" style="font-size:48px; line-height:1">🖥️</div>
+    <div class="label">本机登录</div>
+  </div>
+  <div class="icon icon-line"  data-target="line.html"   onclick="openIcon(this)">
+    <div class="icon-img" style="font-size:48px; line-height:1">📡</div>
+    <div class="label">网通维护系统</div>
+  </div>
+  <div class="icon icon-diary" data-target="diary.html"  onclick="openIcon(this)">
+    <div class="icon-img" style="font-size:48px; line-height:1">📔</div>
+    <div class="label">妈妈日记.zip</div>
+  </div>
+  <div class="icon icon-mycom" data-target="#" onclick="fakeError()">
+    <div class="icon-img" style="font-size:48px; line-height:1">💻</div>
+    <div class="label">我的电脑</div>
+  </div>
+  <div class="icon icon-recycle" data-target="#" onclick="fakeError()">
+    <div class="icon-img" style="font-size:48px; line-height:1">🗑️</div>
+    <div class="label">回收站 (3)</div>
+  </div>
+
+  <!-- 任务栏 -->
+  <div class="taskbar">
+    <button class="start-btn">start</button>
+    <div style="color:white; font-size:12px; padding:0 14px; cursor:default">陆深 (本地用户)</div>
+    <div class="system-tray">
+      <span id="tray-time">11:43</span>
+      <span>🔊</span>
+    </div>
+  </div>
+
+  <div class="scanlines"></div>
+
+  <script src="js/core.js"></script>
+  <script>
+    // 时钟
+    function tick() {
+      const d = new Date();
+      const pad = n => n < 10 ? "0"+n : n;
+      document.getElementById("tray-time").textContent = pad(d.getHours()) + ":" + pad(d.getMinutes());
+    }
+    tick(); setInterval(tick, 30000);
+
+    // 单击 = 选中
+    document.querySelectorAll(".icon").forEach(i => {
+      i.addEventListener("click", e => {
+        e.stopPropagation();
+        document.querySelectorAll(".icon").forEach(x => x.classList.remove("selected"));
+        i.classList.add("selected");
+      });
+      // 双击 = 打开
+      i.addEventListener("dblclick", e => openIcon(i));
+    });
+    document.body.addEventListener("click", () => {
+      document.querySelectorAll(".icon").forEach(x => x.classList.remove("selected"));
+    });
+    function openIcon(el) {
+      const t = el.dataset.target;
+      if (t && t !== "#") window.location.href = t;
+      else fakeError();
+    }
+    function fakeError() {
+      const orig = document.body.style.background;
+      document.body.style.background = "red";
+      setTimeout(() => document.body.style.background = orig, 200);
+      const icon = document.querySelector(".icon-recycle .label");
+      icon.textContent = "⚠ 受限";
+      setTimeout(() => icon.textContent = "回收站 (3)", 1500);
+    }
+  </script>
+</body>
+</html>

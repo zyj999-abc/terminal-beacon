@@ -73,6 +73,12 @@
     </div>
     <div class="stage-end" id="endStage"></div>
   </div>
+  <audio id="bgm" src="audio/blizzard.wav" loop preload="auto" style="display:none"></audio>
+  <script>
+    const bgm = document.getElementById("bgm");
+    bgm.volume = 0.2;
+    document.addEventListener("click", () => bgm.play().catch(()=>{}), { once: true });
+    document.addEventListener("keydown", () => bgm.play().catch(()=>{}), { once: true });
   <script>
     const lines = document.querySelectorAll("#sub .line");
     const center = document.getElementById("center");

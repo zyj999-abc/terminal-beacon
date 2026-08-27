@@ -145,7 +145,12 @@
     </div>
   </div>
 
+  <audio id="morgue" src="audio/morgue.wav" loop preload="auto" style="display:none"></audio>
   <script src="js/core.js"></script>
+  <script>
+    const m = document.getElementById("morgue");
+    m.volume = 0.15;
+    document.addEventListener("click", () => m.play().catch(()=>{}), { once: true });
   <script>
     function unlock() {
       const pw = document.getElementById("pq").value;

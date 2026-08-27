@@ -1,0 +1,8 @@
+﻿git : fatal: Authentication failed for 'https://github.com/zyj999-abc/terminal-beacon.git/'
+所在位置 行:25 字符: 1
++ git push -u origin main 2>&1 | Out-String | Out-File -Encoding utf8 p ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fatal: Authenti...al-beacon.git/':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

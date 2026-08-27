@@ -54,8 +54,18 @@
   </div>
 
   <div class="scanlines"></div>
+  <audio id="bgm" src="audio/xp_start.wav" loop preload="auto" style="display:none"></audio>
+  <audio id="ambient" src="audio/morgue.wav" loop preload="auto" style="display:none"></audio>
 
   <script src="js/core.js"></script>
+  <script>
+    const bgm = document.getElementById("bgm");
+    const amb = document.getElementById("ambient");
+    bgm.volume = 0.4; amb.volume = 0.12;
+    document.addEventListener("click", () => {
+      bgm.play().catch(()=>{});
+      amb.play().catch(()=>{});
+    }, { once: true });
   <script>
     // 时钟
     function tick() {

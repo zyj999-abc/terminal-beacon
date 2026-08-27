@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -19,27 +19,18 @@
     .main-col { flex: 1; }
     .side-col { width: 280px; }
     .panel { background: white; border: 1px solid #ccc; margin-bottom: 14px; }
-    .panel h3 {
-      background: #f2f7fc; border-bottom: 1px solid #cce0f0; color: #003d7a;
-      padding: 6px 12px; font-size: 14px;
-    }
+    .panel h3 { background: #f2f7fc; border-bottom: 1px solid #cce0f0; color: #003d7a; padding: 6px 12px; font-size: 14px; }
     .panel .body { padding: 12px; font-size: 13px; line-height: 1.8; }
     .news-item { border-bottom: 1px dashed #ddd; padding: 6px 0; }
     .news-item time { color: #888; font-size: 11px; }
     .form-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
     .form-row label { width: 70px; font-size: 12px; color: #444; }
-    .form-row input {
-      flex: 1; padding: 4px 6px; border: 1px solid #7f9db9; font-size: 13px;
-    }
+    .form-row input { flex: 1; padding: 4px 6px; border: 1px solid #7f9db9; font-size: 13px; }
     .form-row button { padding: 5px 16px; background: #0066cc; color: white; border: 1px solid #003d7a; cursor: pointer; }
     .form-row button:hover { background: #1976d2; }
     .result { background: #f4ecd8; border: 1px solid #c4b896; padding: 12px; font-family: "KaiTi", "SimSun", serif; font-size: 13px; line-height: 1.8; display: none; margin-top: 8px; }
     .result.show { display: block; }
-    .result .stamp {
-      float: right; width: 60px; height: 60px; border: 2px solid #c0392b; color: #c0392b;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 12px; transform: rotate(-12deg);
-    }
+    .result .stamp { float: right; width: 60px; height: 60px; border: 2px solid #c0392b; color: #c0392b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; transform: rotate(-12deg); }
     .footer { background: #003d7a; color: #aac; padding: 14px; text-align: center; font-size: 12px; margin-top: 14px; }
   </style>
 </head>
@@ -64,22 +55,10 @@
       <div class="panel">
         <h3>📰 医院新闻</h3>
         <div class="body">
-          <div class="news-item">
-            <time>2011-06-18</time><br>
-            我院新院区（向阳区 28 号）正式启用，旧院区（工农区 12 号）开始拆除。
-          </div>
-          <div class="news-item">
-            <time>2010-12-30</time><br>
-            我院被授予"鹤岗市文明单位"称号。
-          </div>
-          <div class="news-item">
-            <time>2008-04-10</time><br>
-            我院骨科成功完成全市首例全髋关节置换术。
-          </div>
-          <div class="news-item">
-            <time>2005-03-12</time><br>
-            新院区奠基仪式顺利举行。
-          </div>
+          <div class="news-item"><time>2011-06-18</time><br>我院新院区（向阳区 28 号）正式启用，旧院区（工农区 12 号）开始拆除。</div>
+          <div class="news-item"><time>2010-12-30</time><br>我院被授予"鹤岗市文明单位"称号。</div>
+          <div class="news-item"><time>2008-04-10</time><br>我院骨科成功完成全市首例全髋关节置换术。</div>
+          <div class="news-item"><time>2005-03-12</time><br>新院区奠基仪式顺利举行。</div>
         </div>
       </div>
 
@@ -130,6 +109,8 @@
 
   <div class="footer">© 2011 鹤岗市第七人民医院 · 黑 ICP 备 2008-00081 号 · 技术支持：鹤岗网通</div>
 
+  <audio id="bgm" src="audio/blizzard.wav" loop preload="auto" style="display:none"></audio>
+  <script>const b=document.getElementById('bgm');b.volume=0.18;document.addEventListener('click',()=>b.play().catch(()=>{}),{once:true});</script>
   <script src="js/core.js"></script>
   <script>
     function query() {

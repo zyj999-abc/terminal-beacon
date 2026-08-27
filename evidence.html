@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>证据整理 - 终端信标</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { background: #1a1a1a; color: #d4d4d4; font-family: "SimSun", "宋体", serif; overflow: auto; }
+    .container { max-width: 880px; margin: 30px auto; padding: 0 20px 60px; }
+    h1 {
+      color: #c0392b; font-size: 26px; text-align: center;
+      border-bottom: 2px solid #c0392b; padding-bottom: 14px; margin-bottom: 30px;
+      letter-spacing: 4px;
+    }
+    .sub { text-align: center; color: #888; font-size: 13px; margin-bottom: 30px; font-family: monospace; }
+    .evidence {
+      background: #0a0a0a; border-left: 3px solid #c0392b;
+      padding: 14px 18px; margin-bottom: 14px;
+    }
+    .evidence .tag {
+      display: inline-block; background: #c0392b; color: white;
+      padding: 1px 8px; font-size: 11px; margin-right: 8px;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+    .evidence .title { color: #fff; font-size: 15px; font-weight: bold; }
+    .evidence .body { color: #aaa; font-size: 13px; line-height: 1.8; margin-top: 6px; }
+    .verdict {
+      background: #1a1a1a; border: 2px solid #c0392b; padding: 24px;
+      margin-top: 30px; text-align: center;
+    }
+    .verdict h2 { color: #c0392b; font-size: 20px; margin-bottom: 18px; }
+    .verdict .choices { display: flex; gap: 14px; justify-content: center; margin-top: 14px; }
+    .verdict .choices button {
+      padding: 12px 24px; font-size: 14px; font-family: inherit;
+      border: 1px solid; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-send {
+      background: #c0392b; color: white; border-color: #c0392b;
+    }
+    .btn-send:hover { background: #a8302a; }
+    .btn-quit {
+      background: transparent; color: #888; border-color: #444;
+    }
+    .btn-quit:hover { background: #222; color: #c0392b; }
+    .confirm {
+      display: none; background: #2a0a0a; border: 1px solid #c0392b;
+      padding: 18px; margin-top: 18px; color: #fff; font-size: 14px;
+    }
+    .confirm.show { display: block; }
+    .confirm p { margin: 6px 0; }
+    .meter { display: flex; gap: 8px; margin-top: 30px; }
+    .meter .seg {
+      flex: 1; height: 8px; background: #333; border-radius: 4px; position: relative; overflow: hidden;
+    }
+    .meter .seg.on::after {
+      content: ""; position: absolute; inset: 0; background: #c0392b;
+    }
+    .counter {
+      text-align: center; font-family: monospace; color: #888;
+      font-size: 12px; margin-top: 10px;
+    }
+    .final {
+      position: fixed; inset: 0; background: #000; display: none; z-index: 1000;
+      align-items: center; justify-content: center;
+      font-family: "SimSun", serif; color: #c0392b; font-size: 22px;
+    }
+    .final.show { display: flex; animation: fadeIn 1.5s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>证 据 整 理</h1>
+    <div class="sub">EVIDENCE COMPILATION · 2011-08-03 · 暑假最后一天</div>
+
+    <div class="meter">
+      <div class="seg on" id="m1"></div>
+      <div class="seg on" id="m2"></div>
+      <div class="seg on" id="m3"></div>
+      <div class="seg on" id="m4"></div>
+      <div class="seg on" id="m5"></div>
+    </div>
+    <div class="counter" id="counter">已收集 5 / 5 份证据</div>
+
+    <div class="evidence">
+      <span class="tag">来源 1</span><span class="title">妈妈日记扫描件（diary.html）</span>
+      <div class="body">
+        显示 2003-02-21 周五妈妈仍在骨科病房，22 日凌晨死亡。但病历却记录"心脏骤停"。
+        撕页上"4 号柜""还活着"等字样为外人补写，但字迹与前页明显不同。
+      </div>
+    </div>
+
+    <div class="evidence">
+      <span class="tag">来源 2</span><span class="title">第七人民医院 2003 年死亡证明（hospital.html）</span>
+      <div class="body">
+        死亡时间 03:17。签字人：陆建国（夫）、赵敏（护士）、周德厚（殡仪馆馆长）、钱为民（民政局科长）。<br>
+        异常：2003-03-15 该档案被钱为民通过内网修改一次。
+      </div>
+    </div>
+
+    <div class="evidence">
+      <span class="tag">来源 3</span><span class="title">北方论坛 2003 暴风雪帖（forum.html）</span>
+      <div class="body">
+        多名网友目击：2 月 17 日晚至 22 日凌晨 3 时，七医院地下室有河北依维柯装 4 个塑料箱运出。
+        网维小张 2011-07-09 爆料：陆建国当晚注册 U-LINE-99 专线，系统心跳至 4 月。
+      </div>
+    </div>
+
+    <div class="evidence">
+      <span class="tag">来源 4</span><span class="title">赵敏 QQ 空间（qq.html）</span>
+      <div class="body">
+        2003-03-01 说说："4 号柜那个女人放进冷柜时手还在动"<br>
+        2003-03-12 说说：4 人聚餐，庆祝 13 万收入到账<br>
+        2011-07-12 最新说说：建议 4 人去旧院区"看看"——陆建国已读不回
+      </div>
+    </div>
+
+    <div class="evidence">
+      <span class="tag">来源 5</span><span class="title">网通线路拓扑（line.html）</span>
+      <div class="body">
+        U-LINE-99 专线 2003-02-17 23:00 注册，由陆建国（网维临工-041）创建。
+        路由：城西机房 → 第七医院老院区地下室 B 区。<br>
+        17 小时内传输 7.4 GB 数据。4 月突然注销，注销前数据全部清空。
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h2>现在，是你的选择</h2>
+      <p style="font-size: 14px; color: #aaa; line-height: 1.8">
+        明天就是开学第一天。开学了你就是高二。<br>
+        你手里的这些，已经足够让 4 个大人被定罪。<br>
+        但他们其中一个人，<span style="color: #fff">是你爸</span>。
+      </p>
+      <div class="choices">
+        <button class="btn-send" onclick="confirm('send')">📤 发送到省公安厅网监处</button>
+        <button class="btn-quit" onclick="confirm('quit')">⏻ 关机 · 假装这一切没发生</button>
+      </div>
+    </div>
+
+    <div class="confirm" id="confirmSend">
+      <p style="color: #c0392b; font-weight: bold">⚠ 你确定要发吗？</p>
+      <p>· 陆建国（你爸）会被以"包庇罪"起诉，刑期 1~3 年，<strong>缓刑 2 年</strong>。</p>
+      <p>· 赵敏、周德厚、钱为民会被以"故意杀人 + 伪造公文 + 倒卖遗体"起诉，最高死刑。</p>
+      <p>· 你会失去这一年里爸爸唯一陪伴你的时间。</p>
+      <p>· 但是，你妈能回家。</p>
+      <p style="margin-top: 14px; text-align: right">
+        <button onclick="location.href='end_true.html'" style="background: #c0392b; color: white; padding: 8px 22px; border: none; cursor: pointer; font-family: inherit">我确定</button>
+        <button onclick="document.getElementById('confirmSend').classList.remove('show')" style="background: transparent; color: #888; padding: 8px 22px; border: 1px solid #444; cursor: pointer; font-family: inherit; margin-left: 6px">让我再想想</button>
+      </p>
+    </div>
+
+    <div class="confirm" id="confirmQuit">
+      <p style="color: #c0392b; font-weight: bold">⚠ 你确定关机吗？</p>
+      <p>· 没人会知道 2003 年那 17 个小时发生了什么。</p>
+      <p>· 没人会知道 4 号柜里是谁。</p>
+      <p>· 你爸还是你爸。一切不会改变。</p>
+      <p>· 但是，<strong>你再也不会知道妈妈的墓在哪</strong>。</p>
+      <p style="margin-top: 14px; text-align: right">
+        <button onclick="location.href='end_quiet.html'" style="background: #444; color: #c0392b; padding: 8px 22px; border: 1px solid #888; cursor: pointer; font-family: inherit">我确定</button>
+        <button onclick="document.getElementById('confirmQuit').classList.remove('show')" style="background: transparent; color: #888; padding: 8px 22px; border: 1px solid #444; cursor: pointer; font-family: inherit; margin-left: 6px">让我再想想</button>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script>
+    function confirm(type) {
+      document.getElementById("confirmSend").classList.remove("show");
+      document.getElementById("confirmQuit").classList.remove("show");
+      if (type === "send") document.getElementById("confirmSend").classList.add("show");
+      else document.getElementById("confirmQuit").classList.add("show");
+    }
+  </script>
+</body>
+</html>

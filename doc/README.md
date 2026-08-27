@@ -13,84 +13,54 @@
 <p align="center">
   <img src="https://img.shields.io/badge/pages-live-2a7ad9?style=for-the-badge" alt="pages">
   <img src="https://img.shields.io/badge/version-2.0-c0392b?style=for-the-badge" alt="version">
-  <img src="https://img.shields.io/badge/license-MIT-44aa44?style=for-the-badge" alt="license">
+  <img src="https://img.shields.io/badge/license-personal--noncommercial-44aa44?style=for-the-badge" alt="license">
   <img src="https://img.shields.io/badge/no_dependency-0-44aa44?style=for-the-badge" alt="deps">
 </p>
 
 ---
 
-## 🎮 4 个道德结局
+## 🎭 这是什么
 
-| 结局 | 路径 | 一句话 |
-|---|---|---|
-| **真相** | 整理证据 → 交省公安厅 | 3 人死刑缓期 · 爸爸包庇罪 2 年缓刑 · 妈妈 8 年后回家 |
-| **散场** | 整理证据 → 交《新京报》 | 3 人出逃 · 爸爸无罪 · 妈妈有墓碑 · **4 号柜另 3 人去向成谜** |
-| **逃避** | 整理证据 → 关机 | 爸爸 2011-10-11 在 4 号柜旁自杀 · 骨灰混入建筑垃圾 |
-| **遗书** | (逃避后唯一可见) | 父亲 2003-2011 8 年沉默的全部真相 + 4 号柜位置 |
+一个**中文互动悬疑叙事游戏**。用浏览器打开就能玩。
 
-> **不是所有"陈岚"都这么幸运。** 玩完真结局再玩记者结局，你会看到那句台词真正的含义。
+- **风格**：2006 年 Windows XP 桌面复刻 + 多站点信息交叉验证
+- **时长**：2-3 小时沉浸（建议分段，每天 1 章）
+- **结局**：4 个（3 主 + 1 隐藏）—— **全部不美满**
+- **零依赖**：纯 HTML/CSS/JS + 7 段自研 BGM + 6 张程序生成图像
+- **零付费**：完全免费
 
 ## 🖼️ 现场速览
 
-<table>
-  <tr>
-    <td width="50%"><b>证据整理 (5 份)</b><br><img src="screenshots/screenshot-evidence.png" alt="evidence"></td>
-    <td width="50%"><b>4 人组群聊</b><br><img src="screenshots/screenshot-groupchat.png" alt="groupchat"></td>
-  </tr>
-  <tr>
-    <td width="50%"><b>爸爸的遗书</b><br><img src="screenshots/screenshot-letter.png" alt="letter"></td>
-    <td width="50%"><b>记者结局"散场"</b><br><img src="screenshots/screenshot-ending.png" alt="ending"></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="screenshots/screenshot-evidence.png" width="48%">
+  <img src="screenshots/screenshot-groupchat.png" width="48%">
+</p>
+<p align="center">
+  <img src="screenshots/screenshot-letter.png" width="48%">
+  <img src="screenshots/screenshot-ending.png" width="48%">
+</p>
 
-## 🔐 5 个真实语义密码
+## ✨ 设计理念
 
-| 入口 | 密保 | 答案 |
-|---|---|---|
-| XP 登录 | 妈妈网名+生日 | `chenlan0301` |
-| 医院病历 | 年+身份证 | `2003` + `230402198503010028` |
-| 网通后台 | 暴风雪日 | `0217` |
-| QQ 空间 | 4 人组群昵称 | `baogao` |
-| 论坛搜索 | 关键词 | `太平间` / `冷柜` / `2003暴风雪` |
+> **不是反转为目的，是让玩家"成为反推"的人。**
 
-> ❌ **没有 Base64 / 没有 F12 必看**。所有谜题在页面文案中。
+- **真实语义** — 所有谜题答案在剧情中能找到，不藏无关文字
+- **多入口信息** — 不同视角拼出同一真相，互相矛盾才有戏
+- **道德代价** — 玩家选择会影响父亲 / 受害人家属 / 沉冤昭雪的概率
+- **时代沉浸** — 2006 XP 复刻 + 7 段 BGM + 6 张图像
 
-## 📂 6 个信息源
+## 🔐 密码在哪
 
-1. **XP 桌面** — 父亲 2003 年维护的旧电脑
-2. **网通维护系统** — 2003 线路拓扑 + U-LINE-99 神秘专线
-3. **妈妈日记扫描件** — 4 篇日记 + 撕页（含"4 号柜"）
-4. **第七人民医院 2011 官网** — 2003 死亡证明
-5. **北方论坛 2003 暴风雪帖** — 网友目击河北依维柯 + 4 塑料箱
-6. **赵敏 QQ 空间 + 4 人组群聊** — 2003 年凌晨 2:48 关键 4 段对话
+> ⚠️ **不剧透任何密码**。所有答案都在游戏内可发现。
 
-## 🎵 7 段原创 BGM / SFX
+游戏中有 5 处需要解锁的信息源。**每个密码都基于现实语义** —— 例如身份证号、生日、2003 年某场暴风雪的具体日期、四人组群的群昵称等。打开游戏后，密保会告诉你在哪儿找。
 
-| 文件 | 时长 | 内容 |
-|---|---|---|
-| `audio/xp_start.wav` | 8s | 风扇启动 + 主板蜂鸣 + XP 启动 "叮咚" + 滚动条 |
-| `audio/blizzard.wav` | 120s 循环 | 暴风雪 + 远处救护车 + 警笛 |
-| `audio/morgue.wav` | 180s 循环 | 70 bpm 心跳 + 50Hz 冷柜嗡嗡 + 远方钟声 |
-| `audio/dialup.wav` | 5s | 56K 调制解调器拨号 + 协商 |
-| `audio/door.wav` | 2s | 太平间铁门 + 锁扣 + 隆隆 |
-| `audio/scream.wav` | 3s | 女人尖叫 + 颤音 |
-| `audio/power_off.wav` | 2s | 断电 + 电流消失 + 余音衰减 |
-
-## 🎨 6 张关键图像
-
-| 文件 | 含义 |
-|---|---|
-| `img/mom_2003.jpg` | 妈妈 2003 病前最后照片（暖黄、模糊） |
-| `img/mom_young.jpg` | 妈妈更年轻（90 年代田野虚化） |
-| `img/hospital_2003.jpg` | 第七医院 2003 旧院区（阴沉） |
-| `img/hospital_2011.jpg` | 旧院区 2011 拆迁围挡 + 推土机 |
-| `img/coldbox_4.jpg` | 4 号冷柜内部（绿光、阴森） |
-| `img/group_dinner.jpg` | 4 人组 2003 聚餐剪影（火锅） |
+> ❌ **无需 F12 查看源代码**。所有谜题在页面文案中。
 
 ## 🛠️ 技术栈
 
-- **HTML 41 / CSS 3 / JS 1** = 45 文件
-- **0 依赖**（无 React、无 Vue、无 jQuery、无 Node）
+- **HTML 15 / CSS 3 / JS 1** = 19 文件
+- **0 依赖**（无 React / Vue / jQuery / Node）
 - **0 字体文件**（用系统 msyh.ttc）
 - **7 段 WAV BGM**（自研 Python + numpy）
 - **6 张 JPG 图像**（PIL 程序生成）
@@ -104,29 +74,30 @@ python -m http.server 8000
 # 打开 http://localhost:8000/
 ```
 
+> 建议用 Chrome / Edge / Firefox 全屏 (F11) 游玩。
+
 ## 🧪 自动化测试
 
 ```bash
-npm install
 node test/walkthrough.mjs
-# 输出 20+ 截图到 test/shots/
+# 输出 30+ 截图到 test/shots/
 ```
 
-## 🎬 设计理念
+## ⚠️ 内容预警 (CW / TW)
 
-> **不是反转为目的，是让玩家"成为反推"的人。**
+本作无灵异，无 jump scare。但包含：
+- 家庭暴力
+- 长期隐瞒
+- 遗体处置
+- 角色自伤
 
-- **真实语义密码** — 不藏无关文字，所有密保在剧情里能找到
-- **多入口信息收敛** — 5 个信息源互相矛盾才能推真相
-- **道德代价真实** — 没有"全部善终"，爸爸坐牢 2 年是真痛
-- **时代沉浸** — 2006 XP 复刻 + 7 段 BGM + 6 张图像
-- **细节伏笔** — 撕页 / 4 号柜 / U-LINE-99 / 7.4GB / 17 小时
+**不建议 16 岁以下游玩**。对相关题材敏感的玩家请谨慎。
 
 ## 📅 路线图 v3.0
 
 - [ ] 多语言 (英文 / 简中 / 繁中) 切换
 - [ ] BGM composer 模式（玩家可调每页背景音）
-- [ ] 二周目彩蛋（隐藏冷柜地图 + 第 4 号柜场景）
+- [ ] 二周目彩蛋（隐藏地图 + 4 号柜场景）
 - [ ] 移动端 UI 优化
 - [ ] PWA 离线缓存
 
@@ -135,16 +106,17 @@ node test/walkthrough.mjs
 如果这个游戏让你想起童年、想起家人、想起某个你没说出口的真相 ——
 **点一下右上角的 ★ Star** 让更多人能找到它。
 
-> 鹤岗老张说"最惨的是七医院老院区"，但他想说的是"最惨的是我们这些 2003 年在鹤岗活下来的人"。
-
 ## 📜 License
 
-MIT — 你可以自由使用、二次创作、商用。
+本作品采用**个人非商用许可**。详见 [LICENSE](LICENSE) 文件。
+
+> **个人使用**: ✅ 免费<br>
+> **二次创作 / 改编**: ✅ 需保留原作者署名<br>
+> **商用 / 商业用途**: ❌ **必须先在 [GitHub Issues](https://github.com/zyj999-abc/terminal-beacon/issues) 申请授权**
 
 ## 🤝 致谢
 
 灵感来源：中国 80/90 后"暴风雪集体记忆" + 真实的人间悲剧。
-同类项目推荐：[头七](https://www.66rpg.com/game/1632199)（橙光）、[Fishswimming](https://github.com/)（HTML 互动解谜）。
 
 ---
 

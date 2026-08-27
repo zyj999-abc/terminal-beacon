@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>北方论坛 - 鹤岗</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { background: #f5f5f5; overflow: auto; font-family: "SimSun", "宋体", sans-serif; }
+    .top { background: #5fa6d6; color: white; padding: 14px; text-align: center; }
+    .top h1 { font-size: 22px; }
+    .top p { font-size: 12px; }
+    .nav { background: #3a87c8; padding: 5px 12px; font-size: 12px; color: white; }
+    .nav a { color: white; margin-right: 14px; text-decoration: none; }
+    .container { max-width: 920px; margin: 14px auto; display: flex; gap: 14px; padding: 0 14px; }
+    .side { width: 200px; }
+    .main { flex: 1; }
+    .panel { background: white; border: 1px solid #c0d0e0; margin-bottom: 12px; }
+    .panel h3 { background: #e8f0f8; padding: 6px 10px; font-size: 13px; color: #003d7a; border-bottom: 1px solid #c0d0e0; }
+    .panel .body { padding: 10px; font-size: 12px; line-height: 1.7; }
+    .search-box { display: flex; gap: 6px; }
+    .search-box input { flex: 1; padding: 4px 8px; border: 1px solid #7f9db9; font-size: 12px; }
+    .search-box button { padding: 4px 14px; background: #3a87c8; color: white; border: 1px solid #2e6ea0; cursor: pointer; }
+    .post { border-bottom: 1px solid #e0e0e0; padding: 8px 0; cursor: pointer; }
+    .post:hover { background: #fafafa; }
+    .post h4 { font-size: 13px; color: #003d7a; margin-bottom: 4px; }
+    .post .meta { color: #888; font-size: 11px; }
+    .post .replies { color: #c0392b; font-size: 11px; font-weight: bold; }
+    .hint { background: #fff8d8; border: 1px solid #e0d090; padding: 6px 10px; font-size: 11px; color: #6e5e2a; margin-top: 6px; }
+    .locked { display: none; padding: 12px; background: #fdf5f0; border: 1px solid #e0b8a8; }
+    .locked.show { display: block; }
+    .locked h4 { color: #c0392b; }
+    .locked p { font-size: 12px; line-height: 1.8; margin: 6px 0; }
+    .reply {
+      background: #fafafa; border-left: 2px solid #c0d0e0; padding: 6px 10px;
+      margin-top: 6px; font-size: 12px;
+    }
+    .reply .author { color: #c0392b; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <h1>北方论坛 · 鹤岗版</h1>
+    <p>BEIFANG BBS · HEGANG · 自 2002</p>
+  </div>
+  <div class="nav">
+    <a href="#">鹤岗杂谈</a>
+    <a href="#">雪天路滑</a>
+    <a href="#">二手交易</a>
+    <a href="#">寻人启事</a>
+    <a href="#">七医院</a>
+    <a href="#">网通宽带</a>
+  </div>
+
+  <div class="container">
+    <div class="side">
+      <div class="panel">
+        <h3>🔍 搜索</h3>
+        <div class="body">
+          <div class="search-box">
+            <input type="text" id="kw" placeholder="输入关键词...">
+            <button onclick="doSearch()">搜索</button>
+          </div>
+          <div class="hint">
+            试试搜：<br>
+            <a href="#" onclick="document.getElementById('kw').value='太平间'; doSearch(); return false">太平间</a> ·
+            <a href="#" onclick="document.getElementById('kw').value='冷柜'; doSearch(); return false">冷柜</a> ·
+            <a href="#" onclick="document.getElementById('kw').value='2003暴风雪'; doSearch(); return false">2003暴风雪</a> ·
+            <a href="#" onclick="document.getElementById('kw').value='赵敏'; doSearch(); return false">赵敏</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>📅 在线用户</h3>
+        <div class="body" style="font-size:11px">
+          <p>· 鹤岗老张（管理员）</p>
+          <p>· 网维小张</p>
+          <p>· 雪地卡车司机</p>
+          <p>· 卖糖葫芦的王叔</p>
+          <p>· 废品站老李</p>
+          <p>· 总共 1247 人在线</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="panel">
+        <h3>🔥 置顶 / 推荐</h3>
+        <div class="body" id="feed">
+          <div class="post" onclick="showPost('storm')">
+            <h4>【回顾】2003 年那场 17 小时断电，你们还记得吗？</h4>
+            <div class="meta">
+              <span>作者：鹤岗老张</span> · <span>2003-02-18 14:32</span> · <span>鹤岗杂谈</span> · <span class="replies">回复 287</span>
+            </div>
+          </div>
+          <div class="post" onclick="showPost('hospital')">
+            <h4>【官方】第七人民医院旧院区即将拆除，地下室围挡施工招标</h4>
+            <div class="meta">
+              <span>作者：基建科-王</span> · <span>2011-05-20</span> · <span>七医院</span> · <span class="replies">回复 12</span>
+            </div>
+          </div>
+          <div class="post">
+            <h4 style="color:#888">[已删] 关于七医院太平间的一些事</h4>
+            <div class="meta">
+              <span>作者：[已注销]</span> · <span>2011-04-08</span> · <span>七医院</span> · <span class="replies">回复 0</span>
+            </div>
+          </div>
+          <div class="post" onclick="showPost('wangguan')">
+            <h4>【爆料】网通的兄弟们，最近地下室拉过奇怪的专线吗？</h4>
+            <div class="meta">
+              <span>作者：网维小张</span> · <span>2011-07-09</span> · <span>网通宽带</span> · <span class="replies">回复 56</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="locked" id="post-storm">
+          <h4>【回顾】2003 年那场 17 小时断电</h4>
+          <p>作者：鹤岗老张 | 2003-02-18 14:32</p>
+          <p>我是 1963 年生人，经历过 86 年大兴安岭火灾，03 年那场断电是我第二次见那么大的雪。那是 2 月 17 日中午开始，市区全面停电 17 个小时。城西机房那边是 13:00 断的，17 楼被压塌了半边，UPS 一直坚持到第二天早上 6 点。</p>
+          <p>最惨的是七医院老院区。他们当时还在用地下室做太平间，听说那天晚上冷柜全部失控了。第二天早上我家一个亲戚打电话来说，他奶奶 17 号晚上 9 点没的，到了 19 号早上才被通知"找不到遗体"。</p>
+          <p>后来这事再没人提了。</p>
+          <div class="reply">
+            <span class="author">雪地卡车司机：</span>我那天晚上也去拉过货，七医院门口停了一辆河北的依维柯，车牌号"冀 A·xxxx"，装了 4 个塑料箱，塑料箱外面贴的标签是生物样本。
+          </div>
+          <div class="reply">
+            <span class="author">卖糖葫芦的王叔：</span>我那天在医院门口卖糖葫芦，看到依维柯凌晨 3 点走的，从地下室出来的。
+          </div>
+        </div>
+
+        <div class="locked" id="post-hospital">
+          <h4>【官方】第七人民医院旧院区拆除</h4>
+          <p>作者：基建科-王 | 2011-05-20</p>
+          <p>旧院区（工农区 12 号）将于 2011 年 7 月开始拆除。地下室（B 区，含原太平间、锅炉房、冷库）将围挡施工。原冷库设备已迁移至新院区。请周边居民绕行。</p>
+          <p>招标联系人：王工 / 0468-xxxx-xxx</p>
+          <p style="color:#c0392b">附：旧院区 2003 年前的部分档案因系统升级已无法查询，请有需要的患者尽快在新院区病案室办理调档。</p>
+        </div>
+
+        <div class="locked" id="post-wangguan">
+          <h4>【爆料】网通的兄弟们，最近地下室拉过奇怪的专线吗？</h4>
+          <p>作者：网维小张 | 2011-07-09</p>
+          <p>我 03 年入职网通。老人跟我说过，03 年 2 月那场暴风雪前后，院里让我们给几个"特殊地点"拉过专线。有一个是殡仪馆，一个是民政局，一个是七医院老院区地下室。最奇怪的是 03 年 2 月 17 日晚上 11 点，我在城西机房值班，看到陆建国（也是我们临工）注册了一条专线，目的地是七医院老院区地下室。这条专线在系统里一直"心跳"到 03 年 4 月才注销。</p>
+          <p>也就是说，那天晚上在地下室里 17 个小时，一直有人在用电脑。</p>
+          <p>现在陆建国还在网通当临时工。他从来不说那天晚上的事。</p>
+          <div class="reply">
+            <span class="author">废品站老李：</span>这条帖子怎么现在才发？陆建国那事，03 年全公司都知道。听说他后来拿了医院一笔钱才消停。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script>
+    function showPost(id) {
+      document.getElementById("post-" + id).classList.add("show");
+      document.getElementById("post-" + id).scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    function doSearch() {
+      const kw = document.getElementById("kw").value.trim();
+      if (kw.includes("太平间") || kw.includes("冷柜")) {
+        alert("匹配到 2 条相关帖子：\n1. 2003 那场 17 小时断电（置顶）\n2. 关于七医院太平间的一些事（已删）\n\n请阅读置顶帖「2003 那场 17 小时断电」");
+        showPost("storm");
+      } else if (kw.includes("2003") || kw.includes("暴风雪")) {
+        showPost("storm");
+      } else if (kw.includes("七医院") || kw.includes("地下室")) {
+        showPost("hospital");
+      } else if (kw.includes("赵敏") || kw.includes("网通") || kw.includes("陆建国")) {
+        showPost("wangguan");
+      } else {
+        alert("未找到与「" + kw + "」相关的帖子。\n提示：试试搜「太平间」「冷柜」「赵敏」「陆建国」");
+      }
+    }
+    document.getElementById("kw").addEventListener("keydown", e => {
+      if (e.key === "Enter") doSearch();
+    });
+  </script>
+</body>
+</html>

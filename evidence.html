@@ -7,86 +7,62 @@
   <style>
     body { background: #1a1a1a; color: #d4d4d4; font-family: "SimSun", "宋体", serif; overflow: auto; }
     .container { max-width: 880px; margin: 30px auto; padding: 0 20px 60px; }
-    h1 {
-      color: #c0392b; font-size: 26px; text-align: center;
-      border-bottom: 2px solid #c0392b; padding-bottom: 14px; margin-bottom: 30px;
-      letter-spacing: 4px;
-    }
+    h1 { color: #c0392b; font-size: 26px; text-align: center; border-bottom: 2px solid #c0392b; padding-bottom: 14px; margin-bottom: 30px; letter-spacing: 4px; }
     .sub { text-align: center; color: #888; font-size: 13px; margin-bottom: 30px; font-family: monospace; }
-    .evidence {
-      background: #0a0a0a; border-left: 3px solid #c0392b;
-      padding: 14px 18px; margin-bottom: 14px;
-    }
-    .evidence .tag {
-      display: inline-block; background: #c0392b; color: white;
-      padding: 1px 8px; font-size: 11px; margin-right: 8px;
-      font-family: "Microsoft YaHei", sans-serif;
-    }
+    .evidence { background: #0a0a0a; border-left: 3px solid #c0392b; padding: 14px 18px; margin-bottom: 14px; }
+    .evidence .tag { display: inline-block; background: #c0392b; color: white; padding: 1px 8px; font-size: 11px; margin-right: 8px; font-family: "Microsoft YaHei", sans-serif; }
     .evidence .title { color: #fff; font-size: 15px; font-weight: bold; }
     .evidence .body { color: #aaa; font-size: 13px; line-height: 1.8; margin-top: 6px; }
-    .verdict {
-      background: #1a1a1a; border: 2px solid #c0392b; padding: 24px;
-      margin-top: 30px; text-align: center;
+    .evidence .img-mini { display: block; max-width: 240px; margin-top: 8px; border: 1px solid #444; filter: brightness(0.9); }
+    .verdict { background: #1a1a1a; border: 2px solid #c0392b; padding: 24px; margin-top: 30px; }
+    .verdict h2 { color: #c0392b; font-size: 20px; margin-bottom: 18px; text-align: center; }
+    .verdict .meta { font-size: 14px; color: #aaa; line-height: 1.8; margin-bottom: 18px; }
+    .verdict .meta em { color: #fff; font-style: normal; font-weight: bold; }
+    .choices { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+    .choices button {
+      padding: 14px 24px; font-size: 14px; font-family: inherit; border: 1px solid; cursor: pointer; text-align: left; transition: all 0.2s;
     }
-    .verdict h2 { color: #c0392b; font-size: 20px; margin-bottom: 18px; }
-    .verdict .choices { display: flex; gap: 14px; justify-content: center; margin-top: 14px; }
-    .verdict .choices button {
-      padding: 12px 24px; font-size: 14px; font-family: inherit;
-      border: 1px solid; cursor: pointer; transition: all 0.2s;
-    }
-    .btn-send {
-      background: #c0392b; color: white; border-color: #c0392b;
-    }
+    .btn-reporter { background: #2a4a6b; color: white; border-color: #2a4a6b; }
+    .btn-reporter:hover { background: #3a5a7b; box-shadow: 0 0 12px rgba(42,74,107,0.5); }
+    .btn-send { background: #c0392b; color: white; border-color: #c0392b; }
     .btn-send:hover { background: #a8302a; }
-    .btn-quit {
-      background: transparent; color: #888; border-color: #444;
-    }
+    .btn-quit { background: transparent; color: #888; border-color: #444; }
     .btn-quit:hover { background: #222; color: #c0392b; }
-    .confirm {
-      display: none; background: #2a0a0a; border: 1px solid #c0392b;
-      padding: 18px; margin-top: 18px; color: #fff; font-size: 14px;
-    }
+    .confirm { display: none; background: #2a0a0a; border: 1px solid #c0392b; padding: 18px; margin-top: 18px; color: #fff; font-size: 13px; line-height: 1.8; }
     .confirm.show { display: block; }
-    .confirm p { margin: 6px 0; }
+    .confirm .actions { margin-top: 14px; text-align: right; }
+    .confirm button { padding: 8px 22px; font-size: 13px; cursor: pointer; font-family: inherit; margin-left: 6px; }
+    .confirm .btn-ok { background: #c0392b; color: white; border: none; }
+    .confirm .btn-ok-blue { background: #2a4a6b; color: white; border: none; }
+    .confirm .btn-cancel { background: transparent; color: #888; border: 1px solid #444; }
     .meter { display: flex; gap: 8px; margin-top: 30px; }
-    .meter .seg {
-      flex: 1; height: 8px; background: #333; border-radius: 4px; position: relative; overflow: hidden;
-    }
-    .meter .seg.on::after {
-      content: ""; position: absolute; inset: 0; background: #c0392b;
-    }
-    .counter {
-      text-align: center; font-family: monospace; color: #888;
-      font-size: 12px; margin-top: 10px;
-    }
-    .final {
-      position: fixed; inset: 0; background: #000; display: none; z-index: 1000;
-      align-items: center; justify-content: center;
-      font-family: "SimSun", serif; color: #c0392b; font-size: 22px;
-    }
-    .final.show { display: flex; animation: fadeIn 1.5s ease forwards; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .meter .seg { flex: 1; height: 8px; background: #333; border-radius: 4px; position: relative; overflow: hidden; }
+    .meter .seg.on::after { content: ""; position: absolute; inset: 0; background: #c0392b; }
+    .counter { text-align: center; font-family: monospace; color: #888; font-size: 12px; margin-top: 10px; }
+    audio { display: none; }
   </style>
 </head>
 <body>
+  <!-- 暴风雪 BGM 持续 -->
+  <audio id="bgm" src="audio/blizzard.wav" loop autoplay></audio>
+  <audio id="sfxDoor" src="audio/door.wav"></audio>
+
   <div class="container">
     <h1>证 据 整 理</h1>
     <div class="sub">EVIDENCE COMPILATION · 2011-08-03 · 暑假最后一天</div>
 
     <div class="meter">
-      <div class="seg on" id="m1"></div>
-      <div class="seg on" id="m2"></div>
-      <div class="seg on" id="m3"></div>
-      <div class="seg on" id="m4"></div>
-      <div class="seg on" id="m5"></div>
+      <div class="seg on"></div><div class="seg on"></div><div class="seg on"></div>
+      <div class="seg on"></div><div class="seg on"></div><div class="seg on"></div>
     </div>
-    <div class="counter" id="counter">已收集 5 / 5 份证据</div>
+    <div class="counter">已收集 6 / 6 份证据（新增：第 7 信号源 - 4 人组群聊）</div>
 
     <div class="evidence">
       <span class="tag">来源 1</span><span class="title">妈妈日记扫描件（diary.html）</span>
       <div class="body">
         显示 2003-02-21 周五妈妈仍在骨科病房，22 日凌晨死亡。但病历却记录"心脏骤停"。
         撕页上"4 号柜""还活着"等字样为外人补写，但字迹与前页明显不同。
+        <img src="img/mom_2003.jpg" class="img-mini" alt="妈妈 2003">
       </div>
     </div>
 
@@ -95,6 +71,7 @@
       <div class="body">
         死亡时间 03:17。签字人：陆建国（夫）、赵敏（护士）、周德厚（殡仪馆馆长）、钱为民（民政局科长）。<br>
         异常：2003-03-15 该档案被钱为民通过内网修改一次。
+        <img src="img/hospital_2003.jpg" class="img-mini" alt="医院 2003">
       </div>
     </div>
 
@@ -124,52 +101,117 @@
       </div>
     </div>
 
+    <div class="evidence">
+      <span class="tag">来源 6</span><span class="title">★ 新线索：4 人组群聊截图（group_chat.html）</span>
+      <div class="body">
+        <strong style="color:#c0392b">从赵敏的 2003 旧 QQ 数据库中意外恢复</strong>。<br>
+        显示 2003-02-22 凌晨 2:48 群里的 4 段对话——在你爸（陆建国）刚注册完专线 6 分钟后。
+        群昵称：包高、周叔、钱哥、敏姐。<br>
+        <span style="color:#fff">最关键的一句话：陆建国说"她不哭不闹了 4 个柜子都关上了 我们就回去"</span>
+        <img src="img/group_dinner.jpg" class="img-mini" alt="4 人聚餐">
+      </div>
+    </div>
+
     <div class="verdict">
       <h2>现在，是你的选择</h2>
-      <p style="font-size: 14px; color: #aaa; line-height: 1.8">
+      <p class="meta">
         明天就是开学第一天。开学了你就是高二。<br>
         你手里的这些，已经足够让 4 个大人被定罪。<br>
-        但他们其中一个人，<span style="color: #fff">是你爸</span>。
+        但他们其中一个人，<em>是你爸</em>。<br><br>
+        有 3 条路。每条路都让 4 人里有人受罚，但程度截然不同。
       </p>
       <div class="choices">
-        <button class="btn-send" onclick="confirm('send')">📤 发送到省公安厅网监处</button>
-        <button class="btn-quit" onclick="confirm('quit')">⏻ 关机 · 假装这一切没发生</button>
+        <button class="btn-reporter" onclick="confirmChoice('reporter')">
+          📰 交给 <strong>《新京报》深度记者</strong>（不报警，公开报道）
+          <div style="font-size:11px; opacity:0.8; margin-top:4px">
+            3 人会提前跑路（出境或隐姓埋名），可能 5-10 年后被引渡<br>
+            你爸没有包庇罪（他没参与交易，只是装网线）<br>
+            <strong>但 4 号柜里的其他 3 人（你妈的样本）去向成谜</strong>
+          </div>
+        </button>
+        <button class="btn-send" onclick="confirmChoice('send')">
+          📤 发送到 <strong>省公安厅网监处</strong>（4 人全落网）
+          <div style="font-size:11px; opacity:0.8; margin-top:4px">
+            赵敏、周德厚、钱为民三人：死刑，缓期 2 年<br>
+            陆建国（你爸）：<strong>包庇罪 1~3 年，缓刑 3 年</strong><br>
+            你会失去这一年里爸爸唯一陪伴你的时间
+          </div>
+        </button>
+        <button class="btn-quit" onclick="confirmChoice('quit')">
+          ⏻ 关机 · 假装这一切没发生
+          <div style="font-size:11px; opacity:0.8; margin-top:4px">
+            没人会知道 2003 年那 17 个小时发生了什么<br>
+            你爸还是你爸<br>
+            <strong>但你再也不会知道妈妈的墓在哪</strong>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="confirm" id="confirmReporter">
+      <p style="color:#2a7ad9; font-weight:bold">📰 致《新京报》深度调查部</p>
+      <p>记者会先发"7 具失踪尸体被倒卖"的社会新闻，<strong>不点名具体医院</strong>。</p>
+      <p>3 个加害者提前 2 周从鹤岗逃走。警方立案后 5 年内抓回 2 人，1 人至今在逃。</p>
+      <p>你爸在新闻里只是"知情旁观者"，没有任何法律后果。</p>
+      <p>但 4 号柜里你妈之外的<strong>另外 3 具尸体的去向</strong>，永远成了谜。</p>
+      <p style="color:#888">—— 你救了你爸，救不了那些其他"陈岚"——</p>
+      <div class="actions">
+        <button class="btn-cancel" onclick="cancel()">让我再想想</button>
+        <button class="btn-ok-blue" onclick="BEACON.go('end_reporter')">我确定</button>
       </div>
     </div>
 
     <div class="confirm" id="confirmSend">
-      <p style="color: #c0392b; font-weight: bold">⚠ 你确定要发吗？</p>
-      <p>· 陆建国（你爸）会被以"包庇罪"起诉，刑期 1~3 年，<strong>缓刑 2 年</strong>。</p>
+      <p style="color:#c0392b; font-weight:bold">⚠ 你确定要发吗？</p>
+      <p>· 陆建国（你爸）会被以"包庇罪"起诉，刑期 1~3 年，缓刑 3 年。</p>
       <p>· 赵敏、周德厚、钱为民会被以"故意杀人 + 伪造公文 + 倒卖遗体"起诉，最高死刑。</p>
       <p>· 你会失去这一年里爸爸唯一陪伴你的时间。</p>
       <p>· 但是，你妈能回家。</p>
-      <p style="margin-top: 14px; text-align: right">
-        <button onclick="location.href='end_true.html'" style="background: #c0392b; color: white; padding: 8px 22px; border: none; cursor: pointer; font-family: inherit">我确定</button>
-        <button onclick="document.getElementById('confirmSend').classList.remove('show')" style="background: transparent; color: #888; padding: 8px 22px; border: 1px solid #444; cursor: pointer; font-family: inherit; margin-left: 6px">让我再想想</button>
-      </p>
+      <p>· <strong>4 号柜里其他 3 具尸体的家属也能找到答案</strong>。</p>
+      <div class="actions">
+        <button class="btn-cancel" onclick="cancel()">让我再想想</button>
+        <button class="btn-ok" onclick="BEACON.go('end_true')">我确定</button>
+      </div>
     </div>
 
     <div class="confirm" id="confirmQuit">
-      <p style="color: #c0392b; font-weight: bold">⚠ 你确定关机吗？</p>
+      <p style="color:#c0392b; font-weight:bold">⚠ 你确定关机吗？</p>
       <p>· 没人会知道 2003 年那 17 个小时发生了什么。</p>
       <p>· 没人会知道 4 号柜里是谁。</p>
       <p>· 你爸还是你爸。一切不会改变。</p>
       <p>· 但是，<strong>你再也不会知道妈妈的墓在哪</strong>。</p>
-      <p style="margin-top: 14px; text-align: right">
-        <button onclick="location.href='end_quiet.html'" style="background: #444; color: #c0392b; padding: 8px 22px; border: 1px solid #888; cursor: pointer; font-family: inherit">我确定</button>
-        <button onclick="document.getElementById('confirmQuit').classList.remove('show')" style="background: transparent; color: #888; padding: 8px 22px; border: 1px solid #444; cursor: pointer; font-family: inherit; margin-left: 6px">让我再想想</button>
-      </p>
+      <p>· 2011 年 10 月 11 日，爸爸在 4 号冷柜旁用机房裁线刀自杀（你是几周后才知道的）。</p>
+      <p>· <strong>你永远不会看到这封信</strong>。</p>
+      <div class="actions">
+        <button class="btn-cancel" onclick="cancel()">让我再想想</button>
+        <button class="btn-cancel" onclick="BEACON.go('end_quiet')" style="color:#c0392b; border-color:#666">我确定</button>
+      </div>
     </div>
   </div>
 
   <script src="js/core.js"></script>
   <script>
-    function confirm(type) {
+    function confirmChoice(type) {
+      document.getElementById("confirmReporter").classList.remove("show");
       document.getElementById("confirmSend").classList.remove("show");
       document.getElementById("confirmQuit").classList.remove("show");
-      if (type === "send") document.getElementById("confirmSend").classList.add("show");
+      if (type === "reporter") {
+        document.getElementById("confirmReporter").classList.add("show");
+        document.getElementById("sfxDoor").play().catch(()=>{});
+      }
+      else if (type === "send") document.getElementById("confirmSend").classList.add("show");
       else document.getElementById("confirmQuit").classList.add("show");
     }
+    function cancel() {
+      document.getElementById("confirmReporter").classList.remove("show");
+      document.getElementById("confirmSend").classList.remove("show");
+      document.getElementById("confirmQuit").classList.remove("show");
+    }
+    // 暴风雪 BGM 音量
+    const bgm = document.getElementById("bgm");
+    bgm.volume = 0.25;
+    // 第一次用户点击才启动 (autoplay policy)
+    document.addEventListener("click", () => bgm.play().catch(()=>{}), { once: true });
   </script>
 </body>
 </html>

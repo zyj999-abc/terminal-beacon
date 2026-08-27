@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>赵敏 - QQ空间</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { background: #f5f5f5; overflow: auto; font-family: "Microsoft YaHei", "Tahoma", sans-serif; }
+    .top { background: linear-gradient(to bottom, #0099d8, #006699); color: white; padding: 18px 30px; }
+    .top h1 { font-size: 20px; }
+    .top p { font-size: 12px; }
+    .container { max-width: 920px; margin: 0 auto; padding: 20px; display: flex; gap: 20px; }
+    .side { width: 220px; background: white; border: 1px solid #cce; padding: 16px; text-align: center; }
+    .side .avatar {
+      width: 100px; height: 100px; margin: 0 auto 12px;
+      background: #fce4ec; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 50px; color: #c0392b; border: 3px solid #c0392b;
+    }
+    .side h3 { color: #c0392b; font-size: 16px; margin-bottom: 4px; }
+    .side p { font-size: 12px; color: #666; margin: 4px 0; }
+    .main { flex: 1; background: white; border: 1px solid #cce; padding: 18px; }
+    .lock-pane { padding: 30px 20px; text-align: center; }
+    .lock-pane input { padding: 6px 10px; border: 1px solid #7f9db9; font-size: 13px; width: 200px; }
+    .lock-pane button { padding: 6px 18px; background: #0099d8; color: white; border: 1px solid #006699; cursor: pointer; margin-left: 6px; }
+    .lock-pane .err { color: #c0392b; font-size: 12px; min-height: 16px; margin-top: 8px; }
+    .post-list { display: none; }
+    .post-list.show { display: block; }
+    .post {
+      background: #fafafa; border: 1px solid #e0e0e0; padding: 12px; margin-bottom: 14px;
+      border-radius: 4px; position: relative;
+    }
+    .post .meta { color: #888; font-size: 11px; margin-bottom: 8px; }
+    .post .body { font-size: 14px; line-height: 1.8; color: #333; }
+    .post .photos { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .post .photo {
+      width: 80px; height: 80px; background: #ddd; border: 1px solid #aaa;
+      display: flex; align-items: center; justify-content: center; color: #777; font-size: 11px;
+    }
+    .post .comments { margin-top: 12px; border-top: 1px dashed #ddd; padding-top: 8px; }
+    .post .comment { font-size: 12px; color: #555; padding: 4px 0; }
+    .post .comment .author { color: #c0392b; font-weight: bold; }
+    .he {
+      color: #006699; text-decoration: underline; font-size: 13px;
+    }
+    .alert-2003 {
+      background: #fff5f0; border: 1px solid #e0a89a; padding: 10px; margin-top: 8px;
+      color: #800000; font-size: 12px; border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <h1>QQ空间 - 赵敏</h1>
+    <p>用户 ID: 60814xxx · "做有良心的护士" · 来自 鹤岗</p>
+  </div>
+
+  <div class="container">
+    <div class="side">
+      <div class="avatar">赵</div>
+      <h3>赵敏</h3>
+      <p>职业：护理（已离职）</p>
+      <p>原单位：第七人民医院</p>
+      <p>QQ 等级：42</p>
+      <p>最后登录：2011-07-12 21:13</p>
+    </div>
+
+    <div class="main">
+      <div class="lock-pane" id="lockPane">
+        <h2 style="color:#006699">🔒 该用户设置了访问权限</h2>
+        <p style="font-size:12px; color:#666; margin: 8px 0 18px">
+          请输入密码访问其 QQ 空间全部内容
+        </p>
+        <input type="password" id="pq" placeholder="访问密码">
+        <button onclick="unlock()">访问</button>
+        <div class="err" id="err"></div>
+        <p style="font-size:11px; color:#888; margin-top:20px">
+          💡 提示：四人小组的群昵称
+        </p>
+      </div>
+
+      <div class="post-list" id="posts">
+        <h2 style="border-bottom: 2px solid #006699; padding-bottom: 8px; margin-bottom: 14px">
+          赵敏的说说 / 日志
+        </h2>
+
+        <!-- 2003-03-01 -->
+        <div class="post">
+          <div class="meta">📌 2003-03-01 14:22 · 来自 七医院</div>
+          <div class="body">
+            雪停了。我 17 号到 22 号都在医院值班。太累了。建国拿了 5 万封口费，我和周馆长、钱科长一人 1 万 5，剩下 5 千给我当红包。<br>
+            4 号柜那个女人，<strong>放进冷柜的时候手还在动</strong>，但周馆长说"冻一会儿就停了"。建国当时就站在旁边，他说"反正她也不知道了"。<br>
+            我把这一页设为不公开。只有 4 个群友看得到。
+          </div>
+          <div class="alert-2003">
+            ⚠ 此说说仅四人小组可见（陆建国、周德厚、钱为民、赵敏）<br>
+            2011 年 7 月 13 日被搜索引擎意外抓取（无权限校验漏洞）
+          </div>
+        </div>
+
+        <!-- 2003-03-12 -->
+        <div class="post">
+          <div class="meta">📌 2003-03-12 18:30 · 来自 殡仪馆</div>
+          <div class="body">
+            周馆长请客。庆祝"任务圆满完成"。说依维柯那边付款方到账了，河北那家生物公司给了一共 8 万。加上封口费，这一单我们赚了 13 万。<br>
+            陆建国说"以后有事还找我，我能给你们拉网线"。我们 4 个碰了杯。
+          </div>
+          <div class="photos">
+            <div class="photo">🍺 合影</div>
+            <div class="photo">🍻 干杯</div>
+          </div>
+          <div class="comments">
+            <div class="comment"><span class="author">周德厚（殡仪馆）：</span>这事到死不能提。我们 4 个都签字画押了。</div>
+            <div class="comment"><span class="author">钱为民（民政局）：</span>档案我已经改了，家属签字一栏补全了。放心。</div>
+            <div class="comment"><span class="author">陆建国（网通）：</span>😐</div>
+          </div>
+        </div>
+
+        <!-- 2003-04-05 -->
+        <div class="post">
+          <div class="meta">📌 2003-04-05 09:14 · 来自 七医院</div>
+          <div class="body">
+            陆建国终于注销了那条专线。7.4 GB 的视频都删了。剩下的 4 个，依维柯公司全处理了。<br>
+            我听周馆长说，河北那边把"4 号柜"那女人的肌腱和股骨样本做成了生物制剂，发到了 7 个省的医院。这辈子都不会有人知道。
+          </div>
+        </div>
+
+        <!-- 2011-07-12 -->
+        <div class="post">
+          <div class="meta">📌 2011-07-12 21:13 · 来自 鹤岗</div>
+          <div class="body">
+            <span class="he">@周德厚 @钱为民 @陆建国</span> 老楼 7 月 1 号开始围挡了。下周推平。我们要不要去看看？<br>
+            陆建国一直没回。我知道他在装。<br>
+            他老婆又没死，只是"消失"了一下。我们都是 2003 年那场雪的好心人。
+          </div>
+          <div class="comments">
+            <div class="comment"><span class="author">周德厚：</span>别去。人多眼杂。</div>
+            <div class="comment"><span class="author">钱为民：</span>老周说得对。8 年了，别再提了。</div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin: 20px 0; color: #888; font-size: 12px">
+          —— 共 4 条说说 ——
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script>
+    function unlock() {
+      const pw = document.getElementById("pq").value;
+      const err = document.getElementById("err");
+      if (pw === BEACON.PASSWORDS.qqPass) {
+        err.style.color = "#1a7a1a";
+        err.textContent = "✓ 解锁成功（2011-07-13 系统漏洞被利用，无痕）";
+        document.getElementById("lockPane").style.display = "none";
+        document.getElementById("posts").classList.add("show");
+      } else {
+        err.style.color = "#c0392b";
+        err.textContent = "密码错误";
+        document.getElementById("pq").value = "";
+        document.getElementById("pq").focus();
+      }
+    }
+    document.getElementById("pq").addEventListener("keydown", e => {
+      if (e.key === "Enter") unlock();
+    });
+  </script>
+</body>
+</html>

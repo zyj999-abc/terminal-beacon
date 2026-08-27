@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>坏结局 - 终端信标</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100vh; background: #000; color: #1a1a1a;
+      font-family: "KaiTi", "楷体", "SimSun", serif;
+    }
+    .stage { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 60px 0; }
+    .fade-in { opacity: 0; transition: opacity 3s ease; color: #444; font-size: 15px; line-height: 2.2;
+      letter-spacing: 2px; max-width: 640px; text-align: center; padding: 0 30px; }
+    .fade-in.show { opacity: 1; }
+    .p1 { color: #c0392b; font-size: 18px; margin-bottom: 22px; letter-spacing: 6px; }
+    .p2 { color: #666; font-size: 14px; margin-bottom: 22px; }
+    .p3 { color: #444; font-size: 13px; line-height: 2.2; font-family: monospace; letter-spacing: 1px; margin-bottom: 22px; }
+    .p4 { color: #888; font-size: 15px; }
+    .fade-in hr { border: none; border-top: 1px solid #222; margin: 22px auto; width: 50%; }
+    .ending-btn {
+      position: fixed; bottom: 24px; right: 24px;
+      background: transparent; color: #333; border: 1px solid #333;
+      padding: 8px 18px; font-family: inherit; font-size: 12px;
+      cursor: pointer; opacity: 0; transition: all 0.5s;
+    }
+    .ending-btn.show { opacity: 1; }
+    .ending-btn:hover { color: #c0392b; border-color: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="fade-in" id="text">
+      <p class="p1">2011 年 8 月 3 日晚上 11 点 47 分。</p>
+      <p class="p2">陆深按下了机箱上的电源键，长按 5 秒。<br>2003 年的旧台式机风扇停了。<br>屏幕黑了。</p>
+      <p class="p2">他走到阳台，把那台机箱从三楼扔了下去。<br>摔在楼下的水泥地上，硬盘碎了。</p>
+      <p class="p2">他回了房间，把妈妈的日记本也烧了。</p>
+      <hr style="border:none; border-top: 1px solid #222; margin: 30px auto; width: 60%">
+      <p class="p3">2011 年 10 月 14 日<br>鹤岗市公安局接到一起失踪案：<br>网维公司临时工 陆建国（41 岁）<br>2011 年 10 月 11 日 17:30 下班后失联<br>经搜索 2011 年 10 月 13 日凌晨，<br>于第七人民医院旧院区拆除工地 B 区地下室 4 号冷柜旁<br>发现其遗体。<br>法医鉴定：<br>用机房裁线刀自杀。<br>身边散落着几张 2003 年的旧照片。<br>其中一张，背面写着一行字：<br>"陈岚，我带你回家。"</p>
+      <hr style="border:none; border-top: 1px solid #222; margin: 30px auto; width: 60%">
+      <p class="p2">2012 年 1 月。<br>第七人民医院旧院区被夷为平地。<br>4 号冷柜里的样本被混入建筑垃圾运往填埋场。<br>再无痕迹。</p>
+      <p class="p2">2012 年 3 月。<br>陆深以全校第一的成绩考上了省重点高中。<br>他再没回过鹤岗。</p>
+      <p class="p4">他的妈妈至今没有墓碑。</p>
+    </div>
+  </div>
+  <button class="ending-btn" id="endBtn" onclick="window.location.href='index.html'">再玩一次</button>
+
+  <script>
+    setTimeout(() => document.getElementById("text").classList.add("show"), 1500);
+    setTimeout(() => document.getElementById("endBtn").classList.add("show"), 12000);
+  </script>
+</body>
+</html>

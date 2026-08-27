@@ -2,18 +2,21 @@
 // 复用前先确认密码存在。所有密保 = 现实语义，不藏无关文字。
 window.BEACON = {
   PAGES: {
-    index:    "index.html",
-    intro:    "intro.html",
-    xp:       "xp.html",
-    login:    "login.html",
-    line:     "line.html",
-    diary:    "diary.html",
-    hospital: "hospital.html",
-    forum:    "forum.html",
-    qq:       "qq.html",
-    evidence: "evidence.html",
-    endTrue:  "end_true.html",
-    endQuiet: "end_quiet.html"
+    index:      "index.html",
+    intro:      "intro.html",
+    xp:         "xp.html",
+    login:      "login.html",
+    line:       "line.html",
+    diary:      "diary.html",
+    hospital:   "hospital.html",
+    forum:      "forum.html",
+    qq:         "qq.html",
+    groupChat:  "group_chat.html",
+    evidence:   "evidence.html",
+    endTrue:    "end_true.html",
+    endReporter:"end_reporter.html",
+    endQuiet:   "end_quiet.html",
+    endLetter:  "end_letter.html"
   },
   // 密码集中存储 — 真实语义 + 密保对应
   PASSWORDS: {
@@ -33,8 +36,7 @@ window.BEACON = {
   go(page) {
     if (this.PAGES[page]) window.location.href = this.PAGES[page];
     else console.warn("Unknown page:", page);
-  },
-  goRaw(url) { window.location.href = url; }
+  }
 };
 
 // 通用 XP 窗口控制

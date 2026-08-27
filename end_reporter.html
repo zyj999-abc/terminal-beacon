@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>记者结局 - 终端信标</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100vh; background: #0a0a0a; color: #c0c0c0;
+      font-family: "KaiTi", "楷体", "SimSun", serif;
+    }
+    .bg { position: fixed; inset: 0; background: linear-gradient(180deg, #050505 0%, #0a0a0a 50%, #1a1208 100%); z-index: 0; }
+    .scan { position: fixed; inset: 0; background: linear-gradient(rgba(255,255,255,0) 50%, rgba(0,0,0,0.18) 50%); background-size: 100% 2px; z-index: 1; opacity: 0.4; pointer-events: none; }
+    .container { position: relative; z-index: 5; max-width: 720px; margin: 0 auto; padding: 80px 36px 100px; }
+    h1 { color: #2a7ad9; font-size: 30px; text-align: center; letter-spacing: 6px; margin-bottom: 14px; opacity: 0; transform: translateY(20px); animation: rise 1.4s 0.5s forwards; }
+    .sub { color: #888; text-align: center; font-size: 13px; letter-spacing: 4px; margin-bottom: 60px; opacity: 0; animation: rise 1.4s 1.5s forwards; }
+    p { color: #c0c0c0; font-size: 15px; line-height: 2.4; margin-bottom: 18px; letter-spacing: 1px; text-align: justify; opacity: 0; animation: rise 1.2s forwards; }
+    .delay-1 { animation-delay: 3.5s; }
+    .delay-2 { animation-delay: 5.5s; }
+    .delay-3 { animation-delay: 7.5s; }
+    .delay-4 { animation-delay: 9.5s; }
+    .delay-5 { animation-delay: 11.5s; }
+    .delay-6 { animation-delay: 13.5s; }
+    .delay-7 { animation-delay: 15.5s; }
+    .verse { color: #2a7ad9; text-align: center; font-size: 16px; letter-spacing: 3px; margin: 30px 0; }
+    hr { border: none; border-top: 1px solid #222; margin: 36px 0; }
+    .epitaph { color: #888; text-align: center; font-size: 13px; margin-top: 50px; line-height: 1.8; }
+    .epitaph .name { color: #fff; font-size: 18px; letter-spacing: 6px; margin-bottom: 8px; }
+    .epitaph .lone { color: #666; font-style: italic; font-size: 12px; margin-top: 20px; }
+    .footer { text-align: center; margin-top: 80px; opacity: 0; animation: rise 1.2s 17s forwards; }
+    .footer button { background: transparent; color: #2a7ad9; border: 1px solid #2a7ad9; padding: 10px 32px; font-family: inherit; font-size: 14px; letter-spacing: 3px; cursor: pointer; transition: all 0.3s; }
+    .footer button:hover { background: rgba(42,122,217,0.1); }
+    .footer .alt { color: #888; border-color: #555; margin-left: 12px; }
+    .footer .alt:hover { color: #c0392b; border-color: #c0392b; }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="scan"></div>
+  <div class="container">
+    <h1>散 场</h1>
+    <div class="sub">— 记 者 之 路 —</div>
+
+    <p class="delay-1">2011 年 10 月 17 日，《新京报》A10 版头条：</p>
+    <p class="delay-2">「东北小城 7 具失踪遗体疑被倒卖，记者历时 3 月暗访殡葬灰色产业链」</p>
+    <p class="delay-3">新闻用化名 + 模糊现场的方式，避免了直接点名。但"3 名涉案人员已于 8 月 15 日离境"的小字，写在最末尾。</p>
+    <p class="delay-4">我爸陆建国 2011 年 11 月提前办了内退，每月领 800 块。他搬到了离鹤岗 200 公里外的七台河，住在一个没有电梯的 6 楼老房子里。</p>
+    <p class="delay-5">2012 年 6 月，他通过律师把 5 万块"封口费"主动交到了纪检委。</p>
+    <p class="verse delay-6">——他第一次没说"我对不起你妈"。他说"我对不起国家"。——</p>
+    <p class="delay-7">2013 年清明。我在七台河一座无名的公墓里，给妈妈立了碑。<br>碑上写：陈岚之墓，儿陆深立。</p>
+    <hr class="delay-7">
+    <p class="delay-7">4 号柜里其他 3 具尸体——他们的家属，至今不知道发生过什么。</p>
+    <div class="epitaph">
+      <div class="name">陈 岚</div>
+      1972 — 2003<br>
+      <span style="color:#444">迟到 10 年的归家</span>
+      <div class="lone">——她终于有墓碑了。<br>但不是所有"陈岚"都这么幸运。——</div>
+    </div>
+    <div class="footer">
+      <button onclick="window.location.href='index.html'">再玩一次</button>
+      <button class="alt" onclick="window.location.href='end_letter.html'">查看陆建国的信</button>
+    </div>
+  </div>
+</body>
+</html>

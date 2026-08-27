@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>鹤岗市第七人民医院</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { background: #e0e0e0; overflow: auto; }
+    .top-bar { background: #0066cc; color: white; padding: 0; }
+    .top-bar .top-row { display: flex; align-items: center; padding: 10px 18px; }
+    .top-bar .logo { font-size: 26px; font-weight: bold; color: white; letter-spacing: 2px; }
+    .top-bar .logo small { display: block; font-size: 12px; color: #cce; font-weight: normal; letter-spacing: 1px; }
+    .nav-bar { background: #003d7a; padding: 6px 0; text-align: center; }
+    .nav-bar a { color: white; padding: 0 18px; text-decoration: none; font-size: 13px; }
+    .nav-bar a:hover { color: #ffcc00; }
+    .banner { background: linear-gradient(135deg, #5fa6d6, #2e7eb4); color: white; padding: 22px 36px; }
+    .banner h1 { font-size: 22px; }
+    .container { display: flex; padding: 18px; gap: 18px; max-width: 1080px; margin: 0 auto; }
+    .main-col { flex: 1; }
+    .side-col { width: 280px; }
+    .panel { background: white; border: 1px solid #ccc; margin-bottom: 14px; }
+    .panel h3 {
+      background: #f2f7fc; border-bottom: 1px solid #cce0f0; color: #003d7a;
+      padding: 6px 12px; font-size: 14px;
+    }
+    .panel .body { padding: 12px; font-size: 13px; line-height: 1.8; }
+    .news-item { border-bottom: 1px dashed #ddd; padding: 6px 0; }
+    .news-item time { color: #888; font-size: 11px; }
+    .form-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+    .form-row label { width: 70px; font-size: 12px; color: #444; }
+    .form-row input {
+      flex: 1; padding: 4px 6px; border: 1px solid #7f9db9; font-size: 13px;
+    }
+    .form-row button { padding: 5px 16px; background: #0066cc; color: white; border: 1px solid #003d7a; cursor: pointer; }
+    .form-row button:hover { background: #1976d2; }
+    .result { background: #f4ecd8; border: 1px solid #c4b896; padding: 12px; font-family: "KaiTi", "SimSun", serif; font-size: 13px; line-height: 1.8; display: none; margin-top: 8px; }
+    .result.show { display: block; }
+    .result .stamp {
+      float: right; width: 60px; height: 60px; border: 2px solid #c0392b; color: #c0392b;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; transform: rotate(-12deg);
+    }
+    .footer { background: #003d7a; color: #aac; padding: 14px; text-align: center; font-size: 12px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-row">
+      <div class="logo">鹤岗市第七人民医院<small>HEGANG NO.7 PEOPLE'S HOSPITAL · 三级乙等</small></div>
+    </div>
+  </div>
+  <div class="nav-bar">
+    <a href="#">首页</a><a href="#">科室介绍</a><a href="#">专家门诊</a>
+    <a href="#">就诊指南</a><a href="#">新闻动态</a><a href="#">科研教学</a>
+    <a href="#">党务公开</a><a href="#">护理园地</a><a href="#">健康科普</a>
+  </div>
+  <div class="banner">
+    <h1>病历档案查询系统 (2003-2011)</h1>
+    <p style="font-size:13px; margin-top:6px">仅供本市医保患者查询历史就诊记录</p>
+  </div>
+
+  <div class="container">
+    <div class="main-col">
+      <div class="panel">
+        <h3>📰 医院新闻</h3>
+        <div class="body">
+          <div class="news-item">
+            <time>2011-06-18</time><br>
+            我院新院区（向阳区 28 号）正式启用，旧院区（工农区 12 号）开始拆除。
+          </div>
+          <div class="news-item">
+            <time>2010-12-30</time><br>
+            我院被授予"鹤岗市文明单位"称号。
+          </div>
+          <div class="news-item">
+            <time>2008-04-10</time><br>
+            我院骨科成功完成全市首例全髋关节置换术。
+          </div>
+          <div class="news-item">
+            <time>2005-03-12</time><br>
+            新院区奠基仪式顺利举行。
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>🔍 历史病历查询 (v2003 旧版系统)</h3>
+        <div class="body">
+          <p style="font-size:12px; color:#666; margin-bottom:8px">
+            <em>提示：此系统为 2003 年版本，仅支持按年份 + 身份证号查询；查询结果不可修改。</em>
+          </p>
+          <div class="form-row">
+            <label>年份：</label>
+            <input type="text" id="y" maxlength="4" placeholder="YYYY" value="2003">
+          </div>
+          <div class="form-row">
+            <label>身份证号：</label>
+            <input type="text" id="id" maxlength="18" placeholder="18 位" value="230402198503010028">
+          </div>
+          <div class="form-row">
+            <label></label>
+            <button onclick="query()">查询</button>
+            <button onclick="reset()" style="background:#888; border-color:#555">清空</button>
+          </div>
+          <div class="err" id="err" style="color:#cc0000; font-size:12px; min-height:14px"></div>
+          <div class="result" id="result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col">
+      <div class="panel">
+        <h3>📋 通知公告</h3>
+        <div class="body" style="font-size:12px">
+          <p>· 2011-07-12 旧院区拆除工程招标公告（向阳区 28 号新院已投运）</p>
+          <p>· 2011-06-30 旧院区地下室（含原太平间、锅炉房）即将围挡施工</p>
+          <p>· 2011-05-20 旧院区冷库设备迁移招标</p>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>🏥 就诊须知</h3>
+        <div class="body" style="font-size:12px">
+          <p>夏季门诊时间：7:30-17:00</p>
+          <p>急诊 24 小时</p>
+          <p>医保办电话：0468-xxxx-xxx</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">© 2011 鹤岗市第七人民医院 · 黑 ICP 备 2008-00081 号 · 技术支持：鹤岗网通</div>
+
+  <script src="js/core.js"></script>
+  <script>
+    function query() {
+      const y = document.getElementById("y").value.trim();
+      const id = document.getElementById("id").value.trim();
+      const err = document.getElementById("err");
+      const result = document.getElementById("result");
+      err.textContent = "";
+      result.classList.remove("show");
+      if (y !== BEACON.PASSWORDS.hospitalYear) {
+        err.textContent = "未找到该年度的历史档案。";
+        result.classList.remove("show");
+        return;
+      }
+      if (id !== BEACON.PASSWORDS.hospitalID) {
+        err.textContent = "未找到该身份证号的病历记录。";
+        result.classList.remove("show");
+        return;
+      }
+      result.classList.add("show");
+      result.innerHTML = `
+        <div class="stamp">已故</div>
+        <h4 style="text-align:center; margin-bottom:12px; font-size:16px">第七人民医院 · 死亡证明书</h4>
+        <p>姓名：陈岚　　性别：女　　年龄：38</p>
+        <p>身份证：230402198503010028</p>
+        <p>入院日期：2003-02-15（骨科，左股骨骨折）</p>
+        <p>出院日期：<span style="color:#c0392b; font-weight:bold">未出院（死亡）</span></p>
+        <p>死亡时间：2003-02-22 03:17</p>
+        <p>死亡原因：心脏骤停，抢救无效</p>
+        <p>主治医师：<strong style="color:#c0392b">周德厚（兼殡仪馆馆长）</strong></p>
+        <p>护理人员：<strong style="color:#c0392b">赵敏</strong></p>
+        <p>家属签字：<strong style="color:#c0392b">陆建国（夫）</strong></p>
+        <p>民政监督：<strong style="color:#c0392b">钱为民（科长）</strong></p>
+        <p>火化证明编号：HM-2003-0222-007</p>
+        <hr style="margin:12px 0; border:none; border-top:1px dashed #999">
+        <p style="color:#666; font-size:12px">备注：本记录于 2003-02-22 由系统自动生成。<br>
+        <span style="color:#c0392b">⚠ 异常标记：2003-03-15 系统日志显示该档案被 <strong>民政局钱为民</strong> 通过内网修改过一次（"更新家属签字"），但本查询接口已锁定只读。</span></p>
+        <p style="margin-top:12px; text-align:right; font-size:12px; color:#666">—— 以上信息仅供查询 ——</p>
+      `;
+    }
+    function reset() {
+      document.getElementById("y").value = "";
+      document.getElementById("id").value = "";
+      document.getElementById("err").textContent = "";
+      document.getElementById("result").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

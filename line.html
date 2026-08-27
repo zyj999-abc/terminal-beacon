@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>网通维护系统 v2.1 - 2003</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { background: #c0c0c0; overflow: auto; }
+    .app {
+      position: relative; width: 100%; min-height: 100vh; padding-bottom: 40px;
+    }
+    .menu-bar {
+      background: #ece9d8; border-bottom: 1px solid #919b9c; padding: 2px 8px;
+      display: flex; gap: 16px; font-size: 13px;
+    }
+    .menu-bar span { cursor: default; padding: 2px 6px; }
+    .menu-bar span:hover { background: #316ac5; color: white; }
+    .toolbar {
+      background: #f0f0ea; border-bottom: 1px solid #b6b6b6; padding: 4px 8px;
+      display: flex; gap: 6px; align-items: center;
+    }
+    .tb-btn {
+      background: linear-gradient(to bottom, #fdfdfd 0%, #e0e0d6 100%);
+      border: 1px solid #8b8b8b; padding: 3px 8px; font-size: 12px;
+      cursor: pointer;
+    }
+    .tb-btn:hover { background: linear-gradient(to bottom, #eaf6fd 0%, #d1e8fa 100%); border-color: #3c7fb1; }
+    .main-frame {
+      display: flex; height: calc(100vh - 110px);
+    }
+    .sidebar {
+      width: 200px; background: #d4d0c8; border-right: 1px solid #919b9c;
+      padding: 8px 0; overflow-y: auto;
+    }
+    .tree-node {
+      padding: 3px 12px 3px 24px; font-size: 12px; cursor: default;
+    }
+    .tree-node:hover { background: #e8e8d8; }
+    .tree-node.active { background: #316ac5; color: white; }
+    .tree-node.folder { font-weight: bold; }
+    .tree-node.special { color: #cc0000; font-weight: bold; }
+    .workspace {
+      flex: 1; background: #f0f0ea; padding: 12px; overflow: auto;
+    }
+    .topo-canvas {
+      background: white; border: 1px solid #919b9c; padding: 0;
+      min-height: 460px; position: relative; overflow: hidden;
+    }
+    .topo-toolbar {
+      background: #ece9d8; border-bottom: 1px solid #919b9c;
+      padding: 3px 8px; font-size: 12px;
+    }
+    .panel {
+      background: #ece9d8; border: 1px solid #919b9c; padding: 8px 12px;
+      margin-bottom: 12px; font-size: 12px;
+    }
+    .panel h4 {
+      font-size: 12px; color: #000; background: linear-gradient(to right, #ece9d8 0%, transparent 100%);
+      border-bottom: 1px solid #b0b0b0; margin: -8px -12px 8px; padding: 4px 12px;
+    }
+    .node {
+      position: absolute; background: #ffffcc; border: 1px solid #cc6600;
+      padding: 4px 8px; font-size: 11px; cursor: pointer; color: #222;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.2); text-align: center; min-width: 70px;
+      z-index: 2;
+    }
+    .node:hover { background: #fff8b8; }
+    .node.unauth { background: #ffcccc; border-color: #cc0000; color: #800000; }
+    .node .node-id { font-weight: bold; display: block; }
+    .edge {
+      position: absolute; background: #336699; height: 2px; transform-origin: left center;
+    }
+    .edge-label {
+      position: absolute; font-size: 9px; color: #555; background: white; padding: 0 2px;
+    }
+    .status-bar {
+      background: #ece9d8; border-top: 1px solid #919b9c; padding: 3px 8px;
+      font-size: 11px; color: #444; display: flex; gap: 16px; margin-top: 8px;
+    }
+    .unauth-gate {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center; z-index: 150;
+    }
+    .unauth-gate.hidden { display: none; }
+    .gate-window {
+      background: #ece9d8; border: 2px solid #14539a; width: 320px;
+      box-shadow: 2px 2px 14px rgba(0,0,0,0.6); color: #222;
+    }
+    .gate-title {
+      background: linear-gradient(to bottom, #0058e6, #288eff); color: white;
+      padding: 4px 8px; font-weight: bold; font-size: 13px;
+    }
+    .gate-body { padding: 14px; font-size: 12px; line-height: 1.6; color: #222; }
+    .gate-body input {
+      width: 100%; padding: 4px 6px; margin: 8px 0; border: 1px solid #7f9db9;
+      background: white; color: #000; font-size: 13px;
+    }
+    .gate-body .btn-row { display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px; }
+    .gate-body button { padding: 3px 14px; font-size: 12px; cursor: pointer; }
+    .gate-body .err { color: #cc0000; font-size: 11px; min-height: 14px; }
+
+    .info-popup {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #ece9d8 !important; border: 2px solid #14539a; min-width: 360px; max-width: 480px;
+      z-index: 200; display: none;
+      box-shadow: 4px 4px 14px rgba(0,0,0,0.5);
+    }
+    .info-popup.show { display: block; }
+    .info-popup .gate-title { background: linear-gradient(to bottom, #0058e6, #288eff); color: white; padding: 4px 8px; font-weight: bold; font-size: 13px; }
+    .info-popup .gate-body { padding: 12px 14px; font-size: 12px; line-height: 1.7; color: #222; }
+    .info-popup button { margin-top: 10px; padding: 3px 14px; font-size: 12px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- 菜单栏 -->
+    <div class="menu-bar">
+      <span>文件(F)</span><span>编辑(E)</span><span>查看(V)</span><span>工具(T)</span>
+      <span>拓扑(L)</span><span>权限(P)</span><span>窗口(W)</span><span>帮助(H)</span>
+    </div>
+    <div class="toolbar">
+      <button class="tb-btn" onclick="BEACON.go('xp')">🗂 返回桌面</button>
+      <button class="tb-btn">🖫 新建</button>
+      <button class="tb-btn">📂 打开</button>
+      <button class="tb-btn">💾 保存</button>
+      <span style="margin-left:auto; color:#555; font-size:11px">用户：网维 临工-041 · Lv.1</span>
+    </div>
+
+    <div class="main-frame">
+      <!-- 侧栏 -->
+      <div class="sidebar">
+        <div class="tree-node folder">▼ 鹤岗网通主干</div>
+        <div class="tree-node">　├─ 城东机房</div>
+        <div class="tree-node">　├─ 城西机房</div>
+        <div class="tree-node">　├─ 第七医院[新]</div>
+        <div class="tree-node special">　└─ 第七医院[老]</div>
+        <div class="tree-node folder">▼ 私有专线</div>
+        <div class="tree-node">　├─ 市政府</div>
+        <div class="tree-node">　├─ 殡仪馆</div>
+        <div class="tree-node">　└─ 民政局</div>
+        <div class="tree-node folder">▼ 我的设备</div>
+        <div class="tree-node">　├─ 路由器 r-04</div>
+        <div class="tree-node">　├─ 测试本机</div>
+        <div class="tree-node">　└─ 备份配置</div>
+        <div class="tree-node folder">▼ 帮助</div>
+        <div class="tree-node">　├─ 操作手册</div>
+        <div class="tree-node">　└─ 联系支持</div>
+      </div>
+
+      <!-- 主工作区 -->
+      <div class="workspace">
+        <div class="panel">
+          <h4>线路维护 / 拓扑图视图 (2003-02-15)</h4>
+          <div style="font-size:11px; color:#444; margin-bottom:6px">
+            共发现 12 个节点。点击节点查看详情。
+            <span style="float:right; color:#cc0000">⚠ 红色节点 = 权限不足</span>
+          </div>
+
+          <div class="topo-canvas" id="topo">
+            <!-- 主干节点 -->
+            <div class="node" style="top:20px; left:40px" onclick="showNode('城东机房')">
+              <span class="node-id">C-NODE-01</span>
+              城东机房
+            </div>
+            <div class="node" style="top:120px; left:200px" onclick="showNode('城西机房')">
+              <span class="node-id">C-NODE-02</span>
+              城西机房
+            </div>
+            <div class="node" style="top:20px; left:380px" onclick="showNode('第七医院新院区')">
+              <span class="node-id">C-NODE-03</span>
+              第七医院[新]
+            </div>
+            <div class="node unauth" style="top:120px; left:560px" onclick="showNode('第七医院老院区')">
+              <span class="node-id">C-NODE-04</span>
+              第七医院[老]
+            </div>
+
+            <!-- 私有专线 -->
+            <div class="node" style="top:240px; left:40px" onclick="showNode('市政府')">
+              <span class="node-id">P-LINE-01</span>
+              市政府
+            </div>
+            <div class="node" style="top:240px; left:200px" onclick="showNode('殡仪馆')">
+              <span class="node-id">P-LINE-02</span>
+              殡仪馆
+            </div>
+            <div class="node" style="top:240px; left:380px" onclick="showNode('民政局')">
+              <span class="node-id">P-LINE-03</span>
+              民政局
+            </div>
+
+            <!-- 底边 -->
+            <div class="node" style="top:360px; left:560px" onclick="showNode('路由器 r-04')">
+              <span class="node-id">R-04</span>
+              我的路由器
+            </div>
+
+            <!-- 神秘第四节点（点不开，未授权） -->
+            <div class="node unauth" style="top:360px; left:40px; background:#ff9999; border-color:#800000" onclick="showNode('神秘专线')">
+              <span class="node-id">U-LINE-99</span>
+              ???（已加密）
+            </div>
+          </div>
+
+          <div class="status-bar">
+            <span>● 在线</span>
+            <span>主节点：城东</span>
+            <span id="lastOp">就绪</span>
+            <span style="margin-left:auto">2003-02-15 23:14:32</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h4>查询 / 跳转</h4>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <button class="tb-btn" onclick="BEACON.go('diary')">📔 查看妈妈日记</button>
+            <button class="tb-btn" onclick="BEACON.go('hospital')">🏥 第七医院 2011 官网</button>
+            <button class="tb-btn" onclick="BEACON.go('forum')">💬 北方论坛</button>
+            <button class="tb-btn" onclick="BEACON.go('qq')">🐧 赵敏 QQ 空间</button>
+            <button class="tb-btn" onclick="BEACON.go('evidence')">📂 整理证据</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 未授权的隐藏专线弹窗 -->
+    <div class="unauth-gate" id="gate">
+      <div class="gate-window">
+        <div class="gate-title">⚠ 该节点需管理员权限 (Level 3)</div>
+        <div class="gate-body">
+          <p>节点 <strong>U-LINE-99</strong> 为 2003-02-17 注册的内部专线。</p>
+          <p>请输入管理员密码：</p>
+          <input type="password" id="gatePw" maxlength="4" autofocus>
+          <div class="err" id="gateErr">密码错误</div>
+          <p style="font-size:11px; color:#666; margin-top:8px">
+            💡 <em>提示：2003 年那场让全市断电 17 小时的暴风雪，断电日（4 位数字）</em>
+          </p>
+          <div class="btn-row">
+            <button onclick="document.getElementById('gate').classList.add('hidden')">关闭</button>
+            <button onclick="tryGate()" style="background:#316ac5; color:white; border:1px solid #14539a">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 节点信息弹窗 -->
+    <div class="info-popup" id="info">
+      <div class="gate-title" id="infoTitle">节点信息</div>
+      <div class="gate-body" id="infoBody"></div>
+      <div style="text-align:right; padding:6px">
+        <button onclick="document.getElementById('info').classList.remove('show')">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script>
+    const nodeData = {
+      "城东机房": "主干机房 2001-12 投运。承载 70% 城区用户。",
+      "城西机房": "辅助机房 2002-08 投运。2003-02 暴风雪期间外部电源丢失，UPS 维持 17h。",
+      "第七医院新院区": "2005-03 搬迁后接入。新院区采用光纤 100Mbps。",
+      "第七医院老院区": "2003-02-17 暴风雪当晚最后一次通电。<br>该节点 <strong>2003-03 起已废弃</strong>，但 <strong>U-LINE-99 专线</strong> 仍维持心跳至 2003-04。",
+      "市政府": "政务专线 2002-06 接入。",
+      "殡仪馆": "民政口专线 2002-09 接入。",
+      "民政局": "民政口专线 2002-09 接入。",
+      "路由器 r-04": "陆建国家中设备。本地网段 192.168.0.0/24。",
+      "神秘专线": "<strong>U-LINE-99 内部专线</strong><br>创建时间：2003-02-17 23:00<br>创建人：网维 临工-041（即陆建国）<br>用途：未注明<br>路由：城西机房 → 第七医院[老] 地下室 B 区<br><br><span style='color:#cc0000'>此专线在 2003-04 突然注销，注销前 6 周内传输了 7.4GB 数据。普通 VPN 不需要这么多流量。</span>"
+    };
+    function showNode(name) {
+      document.getElementById("infoTitle").textContent = "节点信息 - " + name;
+      document.getElementById("infoBody").innerHTML = nodeData[name] || "无信息";
+      document.getElementById("info").classList.add("show");
+      if (name === "神秘专线") {
+        document.getElementById("gate").classList.remove("hidden");
+        setTimeout(() => document.getElementById("gatePw").focus(), 50);
+      }
+    }
+    function tryGate() {
+      const pw = document.getElementById("gatePw").value;
+      if (pw === BEACON.PASSWORDS.lineAdmin) {
+        document.getElementById("gateErr").textContent = "✓ 权限通过。专线已解锁。";
+        document.getElementById("gateErr").style.color = "#1a7a1a";
+        setTimeout(() => {
+          document.getElementById("gate").classList.add("hidden");
+          // 解锁后跳到证据页
+          BEACON.go("evidence");
+        }, 1000);
+      } else {
+        document.getElementById("gateErr").textContent = "密码错误（剩余尝试 2 次）";
+        document.getElementById("gateErr").style.color = "#cc0000";
+        document.getElementById("gatePw").value = "";
+        document.getElementById("gatePw").focus();
+      }
+    }
+    document.getElementById("gatePw").addEventListener("keydown", e => {
+      if (e.key === "Enter") tryGate();
+    });
+    // 时钟
+    function tick() {
+      const d = new Date();
+      const pad = n => n < 10 ? "0"+n : n;
+      document.getElementById("lastOp").textContent = "操作：" + pad(d.getHours())+":"+pad(d.getMinutes());
+    }
+    tick(); setInterval(tick, 30000);
+  </script>
+</body>
+</html>

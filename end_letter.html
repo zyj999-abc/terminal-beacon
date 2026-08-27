@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>陆建国的信 - 终端信标</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100vh; background: #050505; color: #c0c0c0;
+      font-family: "KaiTi", "楷体", "SimSun", serif;
+    }
+    .bg { position: fixed; inset: 0; background: radial-gradient(circle at center, #1a120a 0%, #050505 70%); z-index: 0; }
+    .container { position: relative; z-index: 5; max-width: 640px; margin: 0 auto; padding: 60px 28px 80px; }
+    .alert {
+      background: #1a0808; border: 1px solid #c0392b; padding: 14px 18px;
+      color: #c0392b; font-size: 13px; margin-bottom: 30px;
+      opacity: 0; animation: fade 2s 0.5s forwards;
+    }
+    .alert strong { color: #fff; }
+    h1 { color: #c0392b; font-size: 24px; text-align: center; letter-spacing: 4px; margin-bottom: 8px;
+      opacity: 0; animation: fade 2s 1.5s forwards; }
+    .meta { text-align: center; color: #666; font-size: 12px; font-family: monospace; margin-bottom: 50px; opacity: 0; animation: fade 2s 2s forwards; }
+    .letter {
+      background: #f4ecd8; color: #2b2620; padding: 40px 50px;
+      font-family: "KaiTi", "楷体", "SimSun", serif; line-height: 2.6;
+      font-size: 17px; box-shadow: 0 0 30px rgba(0,0,0,0.8), inset 0 0 40px rgba(0,0,0,0.08);
+      transform: rotate(-0.5deg); position: relative;
+      opacity: 0; animation: fade 2s 3s forwards;
+    }
+    .letter::before {
+      content: ""; position: absolute; top: -10px; left: 50%; width: 80px; height: 18px;
+      background: rgba(255,235,150,0.5); transform: translateX(-50%);
+    }
+    .letter .salutation { margin-bottom: 20px; font-weight: bold; }
+    .letter p { text-indent: 2em; margin-bottom: 14px; }
+    .letter .sign { text-align: right; margin-top: 30px; }
+    .letter .sign .name { font-size: 22px; color: #2b2620; font-weight: bold; letter-spacing: 6px; }
+    .letter .sign .date { color: #5e4d33; font-size: 13px; font-family: "SimSun"; margin-top: 6px; }
+    .letter .blood { color: #800; font-weight: bold; }
+    .letter .ps { margin-top: 24px; padding-top: 16px; border-top: 1px dashed #2b2620; font-size: 14px; color: #5e4d33; }
+    .note {
+      color: #888; font-size: 12px; text-align: center; margin-top: 30px;
+      font-family: monospace; line-height: 1.8; opacity: 0; animation: fade 2s 5s forwards;
+    }
+    .note .highlight { color: #c0392b; }
+    .actions { text-align: center; margin-top: 40px; opacity: 0; animation: fade 2s 6s forwards; }
+    .actions button {
+      background: transparent; color: #c0392b; border: 1px solid #c0392b;
+      padding: 8px 24px; font-family: inherit; font-size: 13px; letter-spacing: 2px;
+      cursor: pointer; margin: 0 8px; transition: all 0.3s;
+    }
+    .actions button:hover { background: rgba(192,57,43,0.1); }
+    .actions .alt { color: #888; border-color: #555; }
+    .actions .alt:hover { color: #c0392b; border-color: #c0392b; }
+    @keyframes fade { to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="container">
+    <div class="alert">
+      ⚠ <strong>警告</strong>：此文档仅在坏结局（关机逃避）下被玩家发现。<br>
+      若真结局 / 记者结局已触发，本页无意义。
+    </div>
+    <h1>陆建国 致 陆深</h1>
+    <div class="meta">D:\Documents\致深儿的信.docx · 2011-08-02 21:31 草稿</div>
+
+    <div class="letter">
+      <div class="salutation">深儿：</div>
+      <p>你看到这封信的时候，爸爸应该已经不在家了。</p>
+      <p>别害怕。爸爸不是去做什么见不得人的事。爸爸是去见你妈。</p>
+      <p>2003 年 2 月 22 日凌晨 3 点 17 分，你妈在第七人民医院老院区的地下室 B 区 4 号冷柜里走的。<br>她当时没有走。是他们让她走的。<br>我亲手接的网线。我亲眼看见的。我什么都没做。</p>
+      <p>他们给了我 5 万块。一间市中心 60 平的平房。一份网通公司"包吃住"的合同。<br>我签了。我没报警。我没告诉外婆。我没告诉你。<br>我连你妈的骨灰都没敢去要。我让她一个人在 4 号柜里待到 2003 年 4 月 7 号，被周德厚混着其他 3 具一起运去填了河床边的洼地。</p>
+      <p>你知道你为什么从 5 岁开始就咳血么？医生说"小儿支气管炎"。<br>不是的。<br>是 2003 年 3 月 5 号晚上，妈走了 11 天后，我去地下室接最后一根网线，<span class="blood">没戴口罩</span>。<br>冷柜里的福尔马林浓度是普通医院的 3 倍。冷藏柜密封失效，4 具身体已经开始液化。<br>我在那个环境待了 40 分钟。回家抱你的时候，鼻血滴在你的小枕头上。</p>
+      <p>你以为你长大后不咳了，是因为你"体质变好了"。<br>不是的。是因为你 12 岁那年，地下室拆了。<br>爸爸一直知道。</p>
+      <p>深儿。爸爸知道你现在恨我。<br>如果我早 8 年把这件事告诉你妈的外婆、告诉你、告诉警察，你妈能回家。<br>但爸爸是个废物。爸爸只敢在 2003 年的暴风雪里，给自己接一根网线，把"自己接了网线"当成了"赎罪"。<br>其实什么都没赎。只是让"他们传数据"更快了一点。</p>
+      <p>这些天我看你翻妈妈的日记本，看你打开那台 2003 年的旧电脑，看你查医院的档案，看你上那个论坛。<br>我装不知道。<br>因为我害怕。我害怕你查完，你就不要爸了。</p>
+      <p>2011 年 8 月 3 日，<br>我看见你坐在那台旧电脑前，屏幕上开着一个"证据整理"的页面。<br>我站在你房间门外 14 分钟。<br>我没推门。<br>因为我听见你在念"已收集 5 份证据"。</p>
+      <p>那一夜，我下了 18 楼给你买了一兜糖饼，和 2003 年 2 月 19 号我给你妈买的一模一样。<br>凌晨 11 点 14 分，我听见你合上电脑了。<br>我听见你走向阳台。<br>我听见<span class="blood">什么声音都没有</span>。</p>
+      <p>你关了机。<br>我没有等到你的"发送"按钮。</p>
+      <p>我等不到了。我也不配等。</p>
+      <p>深儿。<br>爸爸明天要去一个很远的地方出差。<br>这封信就放在你妈的日记本里。<br>你什么时候想看，就看吧。<br>看完之后，如果你决定还是不报警——<br>爸爸不怪你。<br>如果你决定报警——<br>也别告诉警察信里这些，<br>就说"是你自己查到的"。<br>他们要是查出来知道你妈在 4 号柜里待了 6 周，对外公告的"心脏骤停"和"当日火化"就对不上了。<br>他们会知道里面有人造假。这对你不利。</p>
+      <p>爸爸去见你妈了。<br>替爸爸跟你妈说一声对不起。<br>就说陆建国不是故意不接她的。<br>是陆建国害怕。</p>
+      <p>深儿，<br>把爸爸忘了。<br>好好学习。<br>上高中。考大学。离开鹤岗。<br>去找一个你喜欢、也喜欢你的姑娘。<br>替爸爸活得好一点。</p>
+      <div class="sign">
+        <div class="name">陆建国</div>
+        <div class="date">2011 年 8 月 2 日 · 夜 · 鹤岗 · 阴</div>
+      </div>
+      <div class="ps">
+        附：<br>
+        1. 4 号冷柜的位置：老院区 西北角，地下室 B 区 第三个门 左数第 4 排。钥匙在周德厚那。<br>
+        2. 你妈的外婆在七台河。她今年 84。她不知道。你也别告诉她。<br>
+        3. 爸爸的钱在柜子底下。密码是你生日。
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="highlight">此文档为草稿。文件 mtime: 2011-08-02 21:31:12</span><br>
+      陆建国最后在 4 号冷柜旁完成了他在 2003 年没敢完成的事。<br>
+      鹤岗市公安局于 2011 年 10 月 14 日破案时发现，<br>
+      陆建国随身物品里有一张 2011 年 8 月 3 日撕下的日历纸，<br>
+      上面只写了 4 个字：<br>
+      <span class="highlight">"我带你回家。"</span>
+    </div>
+
+    <div class="actions">
+      <button onclick="window.location.href='index.html'">回到开头</button>
+      <button class="alt" onclick="window.location.href='end_quiet.html'">回到坏结局</button>
+    </div>
+  </div>
+</body>
+</html>
